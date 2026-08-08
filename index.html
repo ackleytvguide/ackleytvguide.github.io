@@ -149,7 +149,7 @@
 
 <header>
   <h1><span>DIRT</span>Vision &nbsp;/&nbsp; <em>Flo</em>Racing — TV Guide</h1>
-  <div class="sub">Week of Aug 10–16, 2026 · all times Eastern · dirt &amp; pavement oval only</div>
+  <div class="sub">Aug 8–16, 2026 · all times Eastern · dirt &amp; pavement oval only</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -183,6 +183,28 @@
 const DV = 'https://dirtvision.com/event/';
 const FL = 'https://www.floracing.com/events/';
 const EV = [
+ {c:'dv',d:'2026-08-08',t:'18:15',n:'Land of Legends Raceway',s:'Weekly Racing',u:DV+'8-8-26-land-of-legends-raceway',x:'cancelled'},
+ {c:'dv',d:'2026-08-08',t:'19:00',n:'I-55 Federated Auto Parts Raceway Park',s:'WoO Sprint Cars + Xtreme Outlaw',u:DV+'8-8-26-i-55-federated-auto-parts-raceway-park'},
+ {c:'dv',d:'2026-08-08',t:'19:00',n:'Knoxville Raceway',s:'360 Knoxville Nationals',u:DV+'8-8-26-knoxville-raceway'},
+ {c:'dv',d:'2026-08-09',t:'19:30',n:'Knoxville Raceway',s:'Weekly Racing',u:DV+'8-9-26-knoxville-raceway'},
+ {c:'flo',d:'2026-08-08',t:'16:30',n:'CARS Tour at Hickory',s:'Hickory Motor Speedway · Newton, NC',u:FL+'14928359-2026-cars-tour-at-hickory-motor-speedway'},
+ {c:'flo',d:'2026-08-08',t:'17:00',n:'ISMA/MSS Supermodifieds at Oswego',s:'Oswego Speedway · Oswego, NY',u:FL+'15404962-2026-ismamss-supermodifieds-at-oswego-speedway'},
+ {c:'flo',d:'2026-08-08',t:'17:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788587-2026-nascar-weekly-racing-at-riverhead-raceway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Bill Awtey Tribute at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788574-2026-bill-awtey-tribute-at-jennerstown-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Fonda',s:'Fonda Speedway · Fonda, NY',u:FL+'15398620-2026-weekly-racing-at-fonda-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'NASCAR Weekly Racing at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788576-2026-nascar-weekly-racing-at-berlin-raceway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'RoC Modified Race at Holland',s:'Holland Speedway · Holland, NY',u:FL+'15686422-2026-race-of-champions-sportsman-at-holland-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Port Royal',s:'Port Royal Speedway · Port Royal, PA',u:FL+'14857531-2026-weekly-racing-at-port-royal-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:15',n:'Lucas Oil North/South 100 at Florence',s:'Florence Speedway · Walton, KY',u:FL+'14828247-2026-lucas-oil-northsouth-100-at-florence-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:55',n:'IMCA Weekly Racing at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'14778215-2026-imca-weekly-racing-at-141-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'NASCAR Weekly Racing at Langley',s:'Langley Speedway · Hampton, VA',u:FL+'15788590-2026-nascar-weekly-racing-at-langley-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'MARS Late Models at Macon',s:'Macon Speedway · Macon, IL',u:FL+'14921988-2026-mars-late-models-at-macon-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'American Flat Track — Jackpine Gypsies',s:'Sturgis, SD · Super TT',u:FL+'14798639-2026-american-flat-track-jackpine-gypsies-super-tt'},
+ {c:'flo',d:'2026-08-08',t:'19:45',n:'NASCAR Mods Twin 50s at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'15520400-2026-nascar-modified-twin-50s-at-bowman-gray-stadium'},
+ {c:'flo',d:'2026-08-08',t:'20:30',n:'USAC Silver Crown at Iowa',s:'Iowa Speedway · Newton, IA',u:FL+'15295022-2026-usac-silver-crown-at-iowa-speedway'},
+ {c:'flo',d:'2026-08-09',t:'16:00',n:'Weekly Racing at Thunder Road',s:'Thunder Road · Barre, VT',u:FL+'14870809-2026-weekly-racing-at-thunder-road-speedbowl'},
+ {c:'flo',d:'2026-08-09',t:'19:30',n:'Mid-Am Racing at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686472-2026-mid-am-racing-at-slinger-speedway'},
+ {c:'flo',d:'2026-08-09',t:'20:45',n:'ARCA West at Portland',s:'Portland International Raceway · Portland, OR',u:FL+'15265643-2026-arca-west-at-portland-international-raceway'},
  // ===== DIRTVision =====
  {c:'dv',d:'2026-08-11',t:'17:45',n:'Mansfield Speedway',s:'Super DIRTcar Series',u:DV+'8-11-26-mansfield-speedway'},
  {c:'dv',d:'2026-08-12',t:'17:45',n:'Sharon Speedway',s:'Super DIRTcar Series',u:DV+'8-12-26-sharon-speedway'},
@@ -246,7 +268,7 @@ const EV = [
 ];
 
 // ---- config -----------------------------------------------------------
-const DAYS = ['2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16'];
+const DAYS = ['2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16'];
 let START = 15*60, END = 23*60;               // recomputed per day in render()
 const PXPM = 2.1, BLOCK = 175;                // px per minute, nominal block length
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
