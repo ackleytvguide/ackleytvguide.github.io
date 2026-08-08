@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Racing TV Guide — DIRTVision + FloRacing</title>
+<style>
+  :root{
+    --bg:#0a1020;
+    --panel:#111a30;
+    --panel2:#16223d;
+    --grid:#243357;
+    --ink:#e8eefc;
+    --dim:#8ea0c8;
+    --dv:#f5a623;
+    --dv-d:#7a4f06;
+    --flo:#3ec6ff;
+    --flo-d:#0b4a68;
+    --now:#ff3b5c;
+    --ok:#4be08a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.35 "Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    padding:18px 20px 14px;border-bottom:2px solid var(--grid);
+    background:linear-gradient(180deg,#16223d 0%,#0d1526 100%);
+  }
+  h1{margin:0;font-size:20px;letter-spacing:.14em;text-transform:uppercase}
+  h1 span{color:var(--dv)}
+  h1 em{color:var(--flo);font-style:normal}
+  .sub{margin-top:5px;color:var(--dim);font-size:12px}
+
+  .upnext{
+    margin:14px 20px 0;padding:12px 14px;border-radius:8px;
+    background:var(--panel);border:1px solid var(--grid);
+    display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+  }
+  .upnext .lbl{
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--now);font-weight:700;
+  }
+  .upnext .big{font-size:16px;font-weight:600}
+  .upnext .meta{color:var(--dim);font-size:12px}
+
+  .days{
+    display:flex;gap:6px;padding:14px 20px 0;overflow-x:auto;
+  }
+  .day{
+    flex:0 0 auto;padding:8px 14px;border-radius:6px 6px 0 0;cursor:pointer;
+    background:var(--panel);border:1px solid var(--grid);border-bottom:none;
+    color:var(--dim);text-align:center;line-height:1.25;user-select:none;
+  }
+  .day b{display:block;color:var(--ink);font-size:13px;letter-spacing:.06em}
+  .day small{font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+  .day.on{background:var(--panel2);color:var(--ink);box-shadow:inset 0 3px 0 var(--dv)}
+  .day .cnt{font-size:10px;color:var(--dim)}
+
+  .wrap{margin:0 20px 26px;border:1px solid var(--grid);border-radius:0 8px 8px 8px;overflow:hidden;background:var(--panel)}
+  .scroller{overflow-x:auto}
+  .grid{min-width:1140px;position:relative}
+
+  .timerow{
+    display:flex;position:sticky;top:0;z-index:5;
+    background:var(--panel2);border-bottom:1px solid var(--grid);
+  }
+  .chanhead{
+    flex:0 0 150px;padding:8px 12px;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--dim);border-right:1px solid var(--grid);
+    background:var(--panel2);position:sticky;left:0;z-index:6;
+  }
+  .slots{position:relative;flex:1 1 auto;height:34px}
+  .tick{
+    position:absolute;top:0;height:34px;border-left:1px solid var(--grid);
+    padding:9px 0 0 6px;font-size:11px;color:var(--dim);white-space:nowrap;
+  }
+  .tick.hour{color:var(--ink);font-weight:600}
+
+  .chan{display:flex;border-bottom:1px solid var(--grid)}
+  .chan:last-child{border-bottom:none}
+  .chanlabel{
+    flex:0 0 150px;padding:12px;border-right:1px solid var(--grid);
+    position:sticky;left:0;z-index:4;background:var(--panel);
+  }
+  .chanlabel .nm{font-weight:700;font-size:13px;letter-spacing:.04em}
+  .chanlabel .tag{font-size:10px;color:var(--dim);margin-top:3px}
+  .dv .nm{color:var(--dv)}
+  .flo .nm{color:var(--flo)}
+  .lanes{flex:1 1 auto;position:relative;padding:7px 0}
+  .lane{position:relative;height:70px;margin-bottom:7px}
+  .lane:last-child{margin-bottom:0}
+  .gridline{position:absolute;top:0;bottom:0;width:1px;background:var(--grid);opacity:.55}
+  .gridline.hour{opacity:1}
+
+  .ev{
+    position:absolute;top:0;height:70px;border-radius:5px;padding:7px 10px;
+    overflow:hidden;text-decoration:none;color:#fff;display:flex;
+    flex-direction:column;gap:2px;
+    border-left:4px solid rgba(255,255,255,.5);
+  }
+  .ev .t{font-size:11px;line-height:1.2;opacity:.9;letter-spacing:.04em;flex:0 0 auto}
+  .ev .n{
+    font-size:13px;line-height:1.25;font-weight:600;flex:0 0 auto;
+    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .ev .s{
+    font-size:11px;line-height:1.25;opacity:.82;flex:0 0 auto;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .ev.dv{background:linear-gradient(180deg,#8a5a08,#5e3d05);border-left-color:var(--dv)}
+  .ev.flo{background:linear-gradient(180deg,#0d5f85,#083f59);border-left-color:var(--flo)}
+  .ev:hover{filter:brightness(1.25)}
+  .ev.cancelled{opacity:.45;text-decoration:line-through}
+  .ev.past{opacity:.4}
+
+  .nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--now);z-index:3;box-shadow:0 0 10px var(--now)}
+  .nowline:before{
+    content:"NOW";position:absolute;top:-2px;left:4px;font-size:9px;
+    letter-spacing:.14em;color:var(--now);font-weight:700;
+  }
+
+  .tbd{padding:10px 14px;border-top:1px dashed var(--grid);background:#0e1729}
+  .tbd h4{margin:0 0 7px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .tbd a{
+    display:inline-block;margin:0 6px 6px 0;padding:5px 9px;border-radius:4px;
+    font-size:12px;text-decoration:none;color:#fff;
+  }
+  .tbd a.dv{background:#5e3d05;border-left:3px solid var(--dv)}
+  .tbd a.flo{background:#083f59;border-left:3px solid var(--flo)}
+  .tbd a:hover{filter:brightness(1.3)}
+  .empty{padding:26px 16px;color:var(--dim);font-size:13px;text-align:center}
+
+  footer{margin:0 20px 30px;color:var(--dim);font-size:11.5px;line-height:1.6}
+  footer a{color:var(--flo)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 20px 12px;font-size:11px;color:var(--dim)}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)}
+  @media (max-width:640px){
+    .chanhead,.chanlabel{flex-basis:104px}
+    header{padding:14px}
+    .wrap,.legend,footer,.upnext,.days{margin-left:10px;margin-right:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>DIRT</span>Vision &nbsp;/&nbsp; <em>Flo</em>Racing — TV Guide</h1>
+  <div class="sub">Week of Aug 8–14, 2026 · all times Eastern · dirt &amp; pavement oval only</div>
+</header>
+
+<div class="upnext" id="upnext"></div>
+
+<div class="days" id="days"></div>
+
+<div class="wrap">
+  <div class="scroller" id="scroller">
+    <div class="grid" id="grid"></div>
+  </div>
+  <div class="tbd" id="tbd"></div>
+</div>
+
+<div class="legend">
+  <span><i class="a"></i>DIRTVision</span>
+  <span><i class="b"></i>FloRacing</span>
+  <span>Click any block to open the event page</span>
+</div>
+
+<footer>
+  Times shown are Eastern. DIRTVision start times are published in ET; FloRacing times converted from UTC (EDT, UTC−4).
+  Blocks are drawn at a nominal 3-hour length — actual broadcast lengths vary.
+  Sources: <a href="https://schedule.dirtvision.com/">schedule.dirtvision.com</a> ·
+  <a href="https://www.floracing.com/events">floracing.com/events</a>.
+  Excluded from FloRacing: drag racing, motocross/supercross, road racing, PBR, and the 24/7 channel.
+</footer>
+
+<script>
+// ---- data -------------------------------------------------------------
+// t = start time in ET (24h) or null for TBD
+const DV = 'https://dirtvision.com/event/';
+const FL = 'https://www.floracing.com/events/';
+const EV = [
+ // ===== DIRTVision =====
+ {c:'dv',d:'2026-08-08',t:'18:15',n:'Land of Legends Raceway',s:'Weekly Racing',u:DV+'8-8-26-land-of-legends-raceway',x:'cancelled'},
+ {c:'dv',d:'2026-08-08',t:'19:00',n:'I-55 Federated Auto Parts Raceway Park',s:'WoO Sprint Cars + Xtreme Outlaw',u:DV+'8-8-26-i-55-federated-auto-parts-raceway-park'},
+ {c:'dv',d:'2026-08-08',t:'19:00',n:'Knoxville Raceway',s:'360 Knoxville Nationals',u:DV+'8-8-26-knoxville-raceway'},
+ {c:'dv',d:'2026-08-09',t:'19:30',n:'Knoxville Raceway',s:'Weekly Racing',u:DV+'8-9-26-knoxville-raceway'},
+ {c:'dv',d:'2026-08-11',t:'17:45',n:'Mansfield Speedway',s:'Super DIRTcar Series',u:DV+'8-11-26-mansfield-speedway'},
+ {c:'dv',d:'2026-08-12',t:'17:45',n:'Sharon Speedway',s:'Super DIRTcar Series',u:DV+'8-12-26-sharon-speedway'},
+ {c:'dv',d:'2026-08-12',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-12-26-knoxville-raceway'},
+ {c:'dv',d:'2026-08-13',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-13-26-knoxville-raceway'},
+ {c:'dv',d:'2026-08-14',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-14-26-knoxville-raceway'},
+
+ // ===== FloRacing — Sat Aug 8 =====
+ {c:'flo',d:'2026-08-08',t:'16:30',n:'CARS Tour at Hickory',s:'Hickory Motor Speedway · Newton, NC',u:FL+'14928359-2026-cars-tour-at-hickory-motor-speedway'},
+ {c:'flo',d:'2026-08-08',t:'17:00',n:'ISMA/MSS Supermodifieds at Oswego',s:'Oswego Speedway · Oswego, NY',u:FL+'15404962-2026-ismamss-supermodifieds-at-oswego-speedway'},
+ {c:'flo',d:'2026-08-08',t:'17:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788587-2026-nascar-weekly-racing-at-riverhead-raceway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Bill Awtey Tribute at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788574-2026-bill-awtey-tribute-at-jennerstown-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Fonda',s:'Fonda Speedway · Fonda, NY',u:FL+'15398620-2026-weekly-racing-at-fonda-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'NASCAR Weekly Racing at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788576-2026-nascar-weekly-racing-at-berlin-raceway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'RoC Modified Race at Holland',s:'Holland Speedway · Holland, NY',u:FL+'15686422-2026-race-of-champions-sportsman-at-holland-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Port Royal',s:'Port Royal Speedway · Port Royal, PA',u:FL+'14857531-2026-weekly-racing-at-port-royal-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:15',n:'Lucas Oil North/South 100 at Florence',s:'Florence Speedway · Walton, KY',u:FL+'14828247-2026-lucas-oil-northsouth-100-at-florence-speedway'},
+ {c:'flo',d:'2026-08-08',t:'18:55',n:'IMCA Weekly Racing at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'14778215-2026-imca-weekly-racing-at-141-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'NASCAR Weekly Racing at Langley',s:'Langley Speedway · Hampton, VA',u:FL+'15788590-2026-nascar-weekly-racing-at-langley-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'MARS Late Models at Macon',s:'Macon Speedway · Macon, IL',u:FL+'14921988-2026-mars-late-models-at-macon-speedway'},
+ {c:'flo',d:'2026-08-08',t:'19:00',n:'American Flat Track — Jackpine Gypsies',s:'Sturgis, SD · Super TT',u:FL+'14798639-2026-american-flat-track-jackpine-gypsies-super-tt'},
+ {c:'flo',d:'2026-08-08',t:'19:45',n:'NASCAR Mods Twin 50s at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'15520400-2026-nascar-modified-twin-50s-at-bowman-gray-stadium'},
+ {c:'flo',d:'2026-08-08',t:'20:30',n:'USAC Silver Crown at Iowa',s:'Iowa Speedway · Newton, IA',u:FL+'15295022-2026-usac-silver-crown-at-iowa-speedway'},
+
+ // ===== FloRacing — Sun Aug 9 =====
+ {c:'flo',d:'2026-08-09',t:'16:00',n:'Weekly Racing at Thunder Road',s:'Thunder Road · Barre, VT',u:FL+'14870809-2026-weekly-racing-at-thunder-road-speedbowl'},
+ {c:'flo',d:'2026-08-09',t:'19:30',n:'Mid-Am Racing at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686472-2026-mid-am-racing-at-slinger-speedway'},
+ {c:'flo',d:'2026-08-09',t:'20:45',n:'ARCA West at Portland',s:'Portland International Raceway · Portland, OR',u:FL+'15265643-2026-arca-west-at-portland-international-raceway'},
+
+ // ===== FloRacing — Mon Aug 10 =====
+ {c:'flo',d:'2026-08-10',t:'18:15',n:'Wild Thing Kart Series at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15844934-2026-wild-thing-kart-series-at-stafford-speedway'},
+ {c:'flo',d:'2026-08-10',t:'19:30',n:'American Flat Track — Jackpine Gypsies',s:'Sturgis, SD · Short Track',u:FL+'14798649-2026-american-flat-track-at-jackpine-gypsies-short-track'},
+
+ // ===== FloRacing — Tue Aug 11 =====
+ {c:'flo',d:'2026-08-11',t:'19:45',n:'Winged Sprint Car Shootout at Marshalltown',s:'Marshalltown Speedway · Marshalltown, IA',u:FL+'14874777-2026-winged-sprint-car-shootout-at-marshalltown-speedway'},
+ {c:'flo',d:'2026-08-11',t:'20:00',n:'Front Row Challenge at Southern Iowa',s:'Southern Iowa Speedway · Oskaloosa, IA',u:FL+'15306505-2026-front-row-challenge-at-southern-iowa-speedway'},
+
+ // ===== FloRacing — Wed Aug 12 =====
+ {c:'flo',d:'2026-08-12',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
+ {c:'flo',d:'2026-08-12',t:'17:30',n:'Tekton 250 Battle at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788592-2026-tekton-250-battle-at-berlin-at-berlin-raceway'},
+
+ // ===== FloRacing — Thu Aug 13 =====
+ {c:'flo',d:'2026-08-13',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
+ {c:'flo',d:'2026-08-13',t:null,n:'FALS Cup Special at Fairbury',s:'Fairbury Speedway · Fairbury, IL',u:FL+'16107435-2026-fals-cup-special-at-fairbury-speedway'},
+
+ // ===== FloRacing — Fri Aug 14 =====
+ {c:'flo',d:'2026-08-14',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
+ {c:'flo',d:'2026-08-14',t:'18:15',n:'Weekly Racing at Utica-Rome',s:'Utica-Rome Speedway · Vernon, NY',u:FL+'15339073-2026-weekly-racing-at-utica-rome-speedway'},
+ {c:'flo',d:'2026-08-14',t:'19:00',n:'USAC National Midgets at Coles County',s:'Coles County Speedway · Mattoon, IL',u:FL+'15295019-2026-usac-nos-energy-drink-national-midgets-at-coles-county-speedway'},
+ {c:'flo',d:'2026-08-14',t:'19:00',n:'Captain of the Creek at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'15686459-2026-imca-captain-of-the-creek-at-141-speedway'},
+ {c:'flo',d:'2026-08-14',t:'19:00',n:'MARS Illinois Valley Showdown at LaSalle',s:'LaSalle Speedway · La Salle, IL',u:FL+'15686453-2026-mars-illinois-valley-showdown-at-lasalle-speedway'},
+ {c:'flo',d:'2026-08-14',t:'19:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788589-2026-nascar-weekly-racing-at-riverhead-raceway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'Lucas Oil Topless 100 at Batesville',s:'Batesville Motor Speedway · Locust Grove, AR',u:FL+'15686478-2026-lucas-oil-topless-100-at-batesville-motor-speedway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'RoC Sportsman at Spencer',s:'Spencer Speedway · Williamson, NY',u:FL+'15686408-2026-race-of-champions-sportsman-at-spencer-speedway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'Great Lakes Pro Am at Lake Erie',s:'Lake Erie Speedway · North East, PA',u:FL+'15686476-2026-great-lakes-pro-am-series-at-lake-erie-speedway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'Weekly Racing at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15455391-2026-weekly-racing-at-stafford-speedway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'Summer Showdown at Evergreen',s:'Evergreen Speedway · Monroe, WA',u:FL+'15686471-2026-summer-showdown-at-evergreen-speedway'},
+ {c:'flo',d:'2026-08-14',t:null,n:'NASCAR Weekly at Autodrome Granby',s:'Autodrome Granby · Granby, QC',u:FL+'15788593-2026-nascar-weekly-racing-at-autodrome-granby'}
+];
+
+// ---- config -----------------------------------------------------------
+const DAYS = ['2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14'];
+const START = 15*60, END = 23*60, PXPM = 2.1, BLOCK = 175; // 15:00–23:00, px per minute
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const mins = t => t ? (+t.slice(0,2)*60 + +t.slice(3)) : null;
+const fmt = t => { let h=+t.slice(0,2), m=t.slice(3), ap=h>=12?'PM':'AM'; h=h%12||12; return h+':'+m+' '+ap; };
+function dObj(ds){ const p=ds.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+
+let sel = DAYS[0];
+const today = (function(){
+  const n=new Date();
+  const s=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+  return DAYS.indexOf(s)>=0 ? s : null;
+})();
+if(today) sel = today;
+
+// ---- render -----------------------------------------------------------
+function pack(list){
+  const lanes=[];
+  list.slice().sort((a,b)=>mins(a.t)-mins(b.t)).forEach(e=>{
+    const st=mins(e.t), en=st+BLOCK;
+    let placed=false;
+    for(const ln of lanes){
+      if(ln[ln.length-1].en <= st+1){ ln.push({e,st,en}); placed=true; break; }
+    }
+    if(!placed) lanes.push([{e,st,en}]);
+  });
+  return lanes;
+}
+
+function ticks(){
+  let h='';
+  for(let m=START;m<=END;m+=30){
+    const hh=Math.floor(m/60), mm=m%60;
+    const ap=hh>=12?'PM':'AM', h12=hh%12||12;
+    h+='<div class="tick'+(mm===0?' hour':'')+'" style="left:'+((m-START)*PXPM)+'px">'+
+       (mm===0? h12+' '+ap : ':30')+'</div>';
+  }
+  return h;
+}
+function lines(){
+  let h='';
+  for(let m=START;m<=END;m+=30){
+    h+='<div class="gridline'+(m%60===0?' hour':'')+'" style="left:'+((m-START)*PXPM)+'px"></div>';
+  }
+  return h;
+}
+
+function nowLeft(){
+  if(sel!==today) return null;
+  const n=new Date(), m=n.getHours()*60+n.getMinutes();
+  if(m<START||m>END) return null;
+  return (m-START)*PXPM;
+}
+
+function channelHTML(code, name, tag, list){
+  const timed = list.filter(e=>e.t);
+  const lanes = pack(timed);
+  const width = (END-START)*PXPM;
+  let body='';
+  if(!lanes.length){
+    body='<div class="lane">'+lines()+'</div>';
+  } else {
+    lanes.forEach(ln=>{
+      let l='<div class="lane">'+lines();
+      ln.forEach(it=>{
+        const left=Math.max(0,(it.st-START)*PXPM);
+        const w=Math.min(BLOCK*PXPM, width-left)-4;
+        const past = (sel===today) && (new Date().getHours()*60+new Date().getMinutes() > it.st+BLOCK);
+        l+='<a class="ev '+code+(it.e.x==='cancelled'?' cancelled':'')+(past?' past':'')+'" target="_blank" rel="noopener" href="'+it.e.u+'" '+
+           'style="left:'+left+'px;width:'+Math.max(w,150)+'px" title="'+it.e.n+' — '+it.e.s+'">'+
+           '<div class="t">'+fmt(it.e.t)+(it.e.x==='cancelled'?' · CANCELLED':'')+'</div>'+
+           '<div class="n">'+it.e.n+'</div>'+
+           '<div class="s">'+it.e.s+'</div></a>';
+      });
+      l+='</div>'; body+=l;
+    });
+  }
+  const nl=nowLeft();
+  return '<div class="chan '+code+'">'+
+    '<div class="chanlabel"><div class="nm">'+name+'</div><div class="tag">'+tag+'</div></div>'+
+    '<div class="lanes" style="width:'+width+'px">'+body+
+    (nl!==null?'<div class="nowline" style="left:'+nl+'px"></div>':'')+
+    '</div></div>';
+}
+
+function render(){
+  // day tabs
+  document.getElementById('days').innerHTML = DAYS.map(d=>{
+    const o=dObj(d), c=EV.filter(e=>e.d===d).length;
+    return '<div class="day'+(d===sel?' on':'')+'" data-d="'+d+'">'+
+      '<small>'+DOW[o.getDay()]+'</small><b>'+MON[o.getMonth()]+' '+o.getDate()+'</b>'+
+      '<div class="cnt">'+c+' event'+(c===1?'':'s')+(d===today?' · today':'')+'</div></div>';
+  }).join('');
+  [...document.querySelectorAll('.day')].forEach(el=>el.onclick=()=>{sel=el.dataset.d;render();});
+
+  const day = EV.filter(e=>e.d===sel);
+  const dv = day.filter(e=>e.c==='dv'), flo = day.filter(e=>e.c==='flo');
+
+  document.getElementById('grid').innerHTML =
+    '<div class="timerow"><div class="chanhead">Time (ET)</div>'+
+    '<div class="slots" style="width:'+((END-START)*PXPM)+'px">'+ticks()+'</div></div>'+
+    channelHTML('dv','DIRTVision','World Racing Group', dv)+
+    channelHTML('flo','FloRacing','FloSports', flo);
+
+  // TBD strip
+  const tbd = day.filter(e=>!e.t);
+  document.getElementById('tbd').innerHTML = tbd.length
+    ? '<h4>Start time TBD</h4>'+tbd.map(e=>'<a class="'+e.c+'" target="_blank" rel="noopener" href="'+e.u+'">'+e.n+' <span style="opacity:.65">— '+e.s+'</span></a>').join('')
+    : '<h4>Start time TBD</h4><span style="color:var(--dim);font-size:12px">None — every event today has a posted start time.</span>';
+
+  // up next
+  const now = new Date();
+  const all = EV.filter(e=>e.t && e.x!=='cancelled').map(e=>{
+    const p=e.d.split('-'); const dt=new Date(+p[0],+p[1]-1,+p[2],+e.t.slice(0,2),+e.t.slice(3));
+    return {e,dt};
+  }).sort((a,b)=>a.dt-b.dt);
+  const next = all.find(x=>x.dt>now) || all[0];
+  const un=document.getElementById('upnext');
+  if(next){
+    const o=next.dt;
+    const diff=Math.round((o-now)/60000);
+    let when;
+    if(diff<0) when='earlier';
+    else if(diff<60) when='in '+diff+' min';
+    else if(diff<1440) when='in '+Math.floor(diff/60)+'h '+(diff%60)+'m';
+    else when='in '+Math.floor(diff/1440)+' day'+(Math.floor(diff/1440)===1?'':'s');
+    un.innerHTML='<span class="lbl">Up next</span>'+
+      '<span class="big" style="color:'+(next.e.c==='dv'?'var(--dv)':'var(--flo)')+'">'+
+      (next.e.c==='dv'?'DIRTVision':'FloRacing')+'</span>'+
+      '<span class="big">'+next.e.n+'</span>'+
+      '<span class="meta">'+DOW[o.getDay()]+' '+MON[o.getMonth()]+' '+o.getDate()+' · '+fmt(next.e.t)+' ET · '+when+'</span>'+
+      '<a href="'+next.e.u+'" target="_blank" rel="noopener" style="margin-left:auto;color:var(--ok);text-decoration:none;font-weight:600">Open ↗</a>';
+  }
+
+  // scroll to the busy part
+  const sc=document.getElementById('scroller');
+  const nl=nowLeft();
+  sc.scrollLeft = nl!==null ? Math.max(0,nl-260) : 0;
+}
+render();
+setInterval(render, 60000);
+</script>
+</body>
+</html>
