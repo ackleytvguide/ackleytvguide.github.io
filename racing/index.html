@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Racing TV Guide — DIRTVision + FloRacing</title>
+<title>Ackley TV Guide — What's on and when</title>
 <style>
   :root{
     --bg:#0a1020;
@@ -16,6 +16,7 @@
     --dv-d:#7a4f06;
     --flo:#3ec6ff;
     --flo-d:#0b4a68;
+    --gb:#ffb612;
     --now:#ff3b5c;
     --ok:#4be08a;
   }
@@ -89,6 +90,7 @@
   .chanlabel .tag{font-size:10px;color:var(--dim);margin-top:3px}
   .dv .nm{color:var(--dv)}
   .flo .nm{color:var(--flo)}
+  .gb .nm{color:var(--gb)}
   .lanes{flex:1 1 auto;position:relative;padding:7px 0}
   .lane{position:relative;height:70px;margin-bottom:7px}
   .lane:last-child{margin-bottom:0}
@@ -112,6 +114,7 @@
   }
   .ev.dv{background:linear-gradient(180deg,#8a5a08,#5e3d05);border-left-color:var(--dv)}
   .ev.flo{background:linear-gradient(180deg,#0d5f85,#083f59);border-left-color:var(--flo)}
+  .ev.gb{background:linear-gradient(180deg,#2c6b4f,#173f2e);border-left-color:var(--gb)}
   .ev:hover{filter:brightness(1.25)}
   .ev.cancelled{opacity:.45;text-decoration:line-through}
   .ev.past{opacity:.4}
@@ -130,6 +133,7 @@
   }
   .tbd a.dv{background:#5e3d05;border-left:3px solid var(--dv)}
   .tbd a.flo{background:#083f59;border-left:3px solid var(--flo)}
+  .tbd a.gb{background:#173f2e;border-left:3px solid var(--gb)}
   .tbd a:hover{filter:brightness(1.3)}
   .empty{padding:26px 16px;color:var(--dim);font-size:13px;text-align:center}
 
@@ -137,7 +141,7 @@
   footer a{color:var(--flo)}
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 20px 12px;font-size:11px;color:var(--dim)}
   .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)}
+  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)} .legend .c{background:var(--gb)}
   @media (max-width:640px){
     .chanhead,.chanlabel{flex-basis:104px}
     header{padding:14px}
@@ -148,8 +152,8 @@
 <body>
 
 <header>
-  <h1><span>DIRT</span>Vision &nbsp;/&nbsp; <em>Flo</em>Racing — TV Guide</h1>
-  <div class="sub">Aug 8–16, 2026 · all times Eastern · dirt &amp; pavement oval only</div>
+  <h1><span>Ackley</span> TV Guide</h1>
+  <div class="sub">Aug 8–16, 2026 · all times Eastern · racing, football, and what else is on</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -166,6 +170,7 @@
 <div class="legend">
   <span><i class="a"></i>DIRTVision</span>
   <span><i class="b"></i>FloRacing</span>
+  <span><i class="c"></i>Packers</span>
   <span>Click any block to open the event page</span>
 </div>
 
@@ -175,6 +180,7 @@
   Sources: <a href="https://schedule.dirtvision.com/">schedule.dirtvision.com</a> ·
   <a href="https://www.floracing.com/events">floracing.com/events</a>.
   Excluded from FloRacing: drag racing, motocross/supercross, road racing, PBR, and the 24/7 channel.
+  Packers schedule from <a href="https://www.packers.com/schedule/">packers.com</a> — <a href="packers/">see the full season</a>.
 </footer>
 
 <script>
@@ -264,7 +270,10 @@ const EV = [
 
  // ===== FloRacing — Sun Aug 16 =====
  {c:'flo',d:'2026-08-16',t:'19:00',n:'USAC National Midgets at Jacksonville',s:'Jacksonville Speedway · Jacksonville, IL',u:FL+'15295015-2026-usac-nos-energy-drink-national-midgets-at-jacksonville-speedway'},
- {c:'flo',d:'2026-08-16',t:null,n:'Go-Kart Night at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686458-2026-go-kart-night-at-slinger-speedway'}
+ {c:'flo',d:'2026-08-16',t:null,n:'Go-Kart Night at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686458-2026-go-kart-night-at-slinger-speedway'},
+
+ // ===== Packers =====
+ {c:'gb',d:'2026-08-13',t:'19:00',n:'Packers at Pittsburgh Steelers',s:'Pre 1 · Acrisure Stadium · Packers TV',u:'packers/'},
 ];
 
 // ---- config -----------------------------------------------------------
@@ -380,13 +389,15 @@ function render(){
   [...document.querySelectorAll('.day')].forEach(el=>el.onclick=()=>{sel=el.dataset.d;render();});
 
   const day = EV.filter(e=>e.d===sel);
-  const dv = day.filter(e=>e.c==='dv'), flo = day.filter(e=>e.c==='flo');
+  const dv = day.filter(e=>e.c==='dv'), flo = day.filter(e=>e.c==='flo'),
+        gb = day.filter(e=>e.c==='gb');
 
   document.getElementById('grid').innerHTML =
     '<div class="timerow"><div class="chanhead">Time (ET)</div>'+
     '<div class="slots" style="width:'+((END-START)*PXPM)+'px">'+ticks()+'</div></div>'+
     channelHTML('dv','DIRTVision','World Racing Group', dv)+
-    channelHTML('flo','FloRacing','FloSports', flo);
+    channelHTML('flo','FloRacing','FloSports', flo)+
+    channelHTML('gb','Packers','NFL · 2026', gb);
 
   // TBD strip
   const tbd = day.filter(e=>!e.t);
@@ -411,8 +422,8 @@ function render(){
     else if(diff<1440) when='in '+Math.floor(diff/60)+'h '+(diff%60)+'m';
     else when='in '+Math.floor(diff/1440)+' day'+(Math.floor(diff/1440)===1?'':'s');
     un.innerHTML='<span class="lbl">Up next</span>'+
-      '<span class="big" style="color:'+(next.e.c==='dv'?'var(--dv)':'var(--flo)')+'">'+
-      (next.e.c==='dv'?'DIRTVision':'FloRacing')+'</span>'+
+      '<span class="big" style="color:'+({dv:'var(--dv)',flo:'var(--flo)',gb:'var(--gb)'}[next.e.c])+'">'+
+      ({dv:'DIRTVision',flo:'FloRacing',gb:'Packers'}[next.e.c])+'</span>'+
       '<span class="big">'+next.e.n+'</span>'+
       '<span class="meta">'+DOW[o.getDay()]+' '+MON[o.getMonth()]+' '+o.getDate()+' · '+fmt(next.e.t)+' ET · '+when+'</span>'+
       '<a href="'+next.e.u+'" target="_blank" rel="noopener" style="margin-left:auto;color:var(--ok);text-decoration:none;font-weight:600">Open ↗</a>';
