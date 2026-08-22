@@ -153,7 +153,7 @@
 
 <header>
   <h1><span>Ackley</span> TV Guide</h1>
-  <div class="sub">Aug 8–16, 2026 · all times Eastern · racing, football, and what else is on</div>
+  <div class="sub">Aug 17–27, 2026 · all times Eastern · racing, football, and what else is on</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -180,7 +180,7 @@
   Sources: <a href="https://schedule.dirtvision.com/">schedule.dirtvision.com</a> ·
   <a href="https://www.floracing.com/events">floracing.com/events</a>.
   Excluded from FloRacing: drag racing, motocross/supercross, road racing, PBR, and the 24/7 channel.
-  Packers schedule from <a href="https://www.packers.com/schedule/">packers.com</a> — <a href="packers/">see the full season</a>.
+  Packers schedule from <a href="https://www.packers.com/schedule/">packers.com</a> — <a href="https://ackleytvguide.github.io/packers/">see the full season</a>.
 </footer>
 
 <script>
@@ -189,95 +189,92 @@
 const DV = 'https://dirtvision.com/event/';
 const FL = 'https://www.floracing.com/events/';
 const EV = [
- {c:'dv',d:'2026-08-08',t:'18:15',n:'Land of Legends Raceway',s:'Weekly Racing',u:DV+'8-8-26-land-of-legends-raceway',x:'cancelled'},
- {c:'dv',d:'2026-08-08',t:'19:00',n:'I-55 Federated Auto Parts Raceway Park',s:'WoO Sprint Cars + Xtreme Outlaw',u:DV+'8-8-26-i-55-federated-auto-parts-raceway-park'},
- {c:'dv',d:'2026-08-08',t:'19:00',n:'Knoxville Raceway',s:'360 Knoxville Nationals',u:DV+'8-8-26-knoxville-raceway'},
- {c:'dv',d:'2026-08-09',t:'19:30',n:'Knoxville Raceway',s:'Weekly Racing',u:DV+'8-9-26-knoxville-raceway'},
- {c:'flo',d:'2026-08-08',t:'16:30',n:'CARS Tour at Hickory',s:'Hickory Motor Speedway · Newton, NC',u:FL+'14928359-2026-cars-tour-at-hickory-motor-speedway'},
- {c:'flo',d:'2026-08-08',t:'17:00',n:'ISMA/MSS Supermodifieds at Oswego',s:'Oswego Speedway · Oswego, NY',u:FL+'15404962-2026-ismamss-supermodifieds-at-oswego-speedway'},
- {c:'flo',d:'2026-08-08',t:'17:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788587-2026-nascar-weekly-racing-at-riverhead-raceway'},
- {c:'flo',d:'2026-08-08',t:'18:00',n:'Bill Awtey Tribute at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788574-2026-bill-awtey-tribute-at-jennerstown-speedway'},
- {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Fonda',s:'Fonda Speedway · Fonda, NY',u:FL+'15398620-2026-weekly-racing-at-fonda-speedway'},
- {c:'flo',d:'2026-08-08',t:'18:00',n:'NASCAR Weekly Racing at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788576-2026-nascar-weekly-racing-at-berlin-raceway'},
- {c:'flo',d:'2026-08-08',t:'18:00',n:'RoC Modified Race at Holland',s:'Holland Speedway · Holland, NY',u:FL+'15686422-2026-race-of-champions-sportsman-at-holland-speedway'},
- {c:'flo',d:'2026-08-08',t:'18:00',n:'Weekly Racing at Port Royal',s:'Port Royal Speedway · Port Royal, PA',u:FL+'14857531-2026-weekly-racing-at-port-royal-speedway'},
- {c:'flo',d:'2026-08-08',t:'18:15',n:'Lucas Oil North/South 100 at Florence',s:'Florence Speedway · Walton, KY',u:FL+'14828247-2026-lucas-oil-northsouth-100-at-florence-speedway'},
- {c:'flo',d:'2026-08-08',t:'18:55',n:'IMCA Weekly Racing at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'14778215-2026-imca-weekly-racing-at-141-speedway'},
- {c:'flo',d:'2026-08-08',t:'19:00',n:'NASCAR Weekly Racing at Langley',s:'Langley Speedway · Hampton, VA',u:FL+'15788590-2026-nascar-weekly-racing-at-langley-speedway'},
- {c:'flo',d:'2026-08-08',t:'19:00',n:'MARS Late Models at Macon',s:'Macon Speedway · Macon, IL',u:FL+'14921988-2026-mars-late-models-at-macon-speedway'},
- {c:'flo',d:'2026-08-08',t:'19:00',n:'American Flat Track — Jackpine Gypsies',s:'Sturgis, SD · Super TT',u:FL+'14798639-2026-american-flat-track-jackpine-gypsies-super-tt'},
- {c:'flo',d:'2026-08-08',t:'19:45',n:'NASCAR Mods Twin 50s at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'15520400-2026-nascar-modified-twin-50s-at-bowman-gray-stadium'},
- {c:'flo',d:'2026-08-08',t:'20:30',n:'USAC Silver Crown at Iowa',s:'Iowa Speedway · Newton, IA',u:FL+'15295022-2026-usac-silver-crown-at-iowa-speedway'},
- {c:'flo',d:'2026-08-09',t:'16:00',n:'Weekly Racing at Thunder Road',s:'Thunder Road · Barre, VT',u:FL+'14870809-2026-weekly-racing-at-thunder-road-speedbowl'},
- {c:'flo',d:'2026-08-09',t:'19:30',n:'Mid-Am Racing at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686472-2026-mid-am-racing-at-slinger-speedway'},
- {c:'flo',d:'2026-08-09',t:'20:45',n:'ARCA West at Portland',s:'Portland International Raceway · Portland, OR',u:FL+'15265643-2026-arca-west-at-portland-international-raceway'},
  // ===== DIRTVision =====
- {c:'dv',d:'2026-08-11',t:'17:45',n:'Mansfield Speedway',s:'Super DIRTcar Series',u:DV+'8-11-26-mansfield-speedway'},
- {c:'dv',d:'2026-08-12',t:'17:45',n:'Sharon Speedway',s:'Super DIRTcar Series',u:DV+'8-12-26-sharon-speedway'},
- {c:'dv',d:'2026-08-12',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-12-26-knoxville-raceway'},
- {c:'dv',d:'2026-08-13',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-13-26-knoxville-raceway'},
- {c:'dv',d:'2026-08-14',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-14-26-knoxville-raceway'},
- {c:'dv',d:'2026-08-15',t:'18:00',n:'Knoxville Raceway',s:'Knoxville Nationals',u:DV+'8-15-26-knoxville-raceway'},
- {c:'dv',d:'2026-08-15',t:'18:15',n:'Land of Legends Raceway',s:'Weekly Racing',u:DV+'8-15-26-land-of-legends-raceway'},
- {c:'dv',d:'2026-08-15',t:'18:15',n:'Cedar Lake Speedway',s:'Weekly Racing',u:DV+'8-15-26-cedar-lake-speedway'},
- {c:'dv',d:'2026-08-15',t:'18:30',n:'Sharon Speedway',s:'Weekly Racing',u:DV+'8-15-26-sharon-speedway'},
- {c:'dv',d:'2026-08-16',t:'17:45',n:'Weedsport Speedway',s:'Super DIRTcar Series',u:DV+'8-16-26-weedsport-speedway'},
+ {c:'dv',d:'2026-08-17',t:'17:45',n:'Brewerton Speedway',s:'Super DIRTcar Series',u:DV+'8-17-26-brewerton-speedway'},
+ {c:'dv',d:'2026-08-18',t:'17:45',n:'Land of Legends Raceway',s:'Super DIRTcar Series',u:DV+'8-18-26-land-of-legends-raceway'},
+ {c:'dv',d:'2026-08-18',t:'18:15',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'8-18-26-millbridge-speedway'},
+ {c:'dv',d:'2026-08-19',t:'17:45',n:'Utica-Rome Speedway',s:'Super DIRTcar Series',u:DV+'8-19-26-utica-rome-speedway'},
+ {c:'dv',d:'2026-08-19',t:'18:15',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'8-19-26-millbridge-speedway'},
+ {c:'dv',d:'2026-08-21',t:'18:30',n:'Attica Raceway Park',s:'Weekly Racing',u:DV+'8-21-26-attica-raceway-park'},
+ {c:'dv',d:'2026-08-21',t:'19:00',n:'Williams Grove Speedway',s:'Weekly Racing',u:DV+'8-21-26-williams-grove-speedway'},
+ {c:'dv',d:'2026-08-21',t:'19:15',n:'Ogilvie Raceway',s:'World of Outlaws Sprint Cars',u:DV+'8-21-26-ogilvie-raceway'},
+ {c:'dv',d:'2026-08-21',t:'19:15',n:'Maquoketa Speedway',s:'World of Outlaws Late Models',u:DV+'8-21-26-maquoketa-speedway'},
+ {c:'dv',d:'2026-08-21',t:'19:30',n:'DIRT Zone',s:'DIRT Zone',u:DV+'8-21-26-dirt-zone'},
+ {c:'dv',d:'2026-08-22',t:'17:30',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'8-22-26-millbridge-speedway'},
+ {c:'dv',d:'2026-08-22',t:'18:00',n:'Land of Legends Raceway',s:'Weekly Racing',u:DV+'8-22-26-land-of-legends-raceway'},
+ {c:'dv',d:'2026-08-22',t:'18:00',n:'Cedar Lake Speedway',s:'Weekly Racing',u:DV+'8-22-26-cedar-lake-speedway'},
+ {c:'dv',d:'2026-08-22',t:'18:30',n:'Sharon Speedway',s:'Weekly Racing',u:DV+'8-22-26-sharon-speedway'},
+ {c:'dv',d:'2026-08-22',t:'19:15',n:'Jackson Motorplex',s:'World of Outlaws Sprint Cars',u:DV+'8-22-26-jackson-motorplex'},
+ {c:'dv',d:'2026-08-22',t:'19:15',n:'Maquoketa Speedway',s:'World of Outlaws Late Models',u:DV+'8-22-26-maquoketa-speedway'},
+ {c:'dv',d:'2026-08-22',t:'19:30',n:'DIRT Zone',s:'DIRT Zone',u:DV+'8-22-26-dirt-zone'},
+ {c:'dv',d:'2026-08-22',t:'20:15',n:'Riverside International Speedway',s:'American Sprint Car Series',u:DV+'8-22-26-riverside-international-speedway'},
+ {c:'dv',d:'2026-08-23',t:'19:25',n:'Huset\'s Speedway',s:'Weekly Racing',u:DV+'8-23-26-huset-s-speedway'},
+ {c:'dv',d:'2026-08-25',t:'18:15',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'8-25-26-millbridge-speedway'},
+ {c:'dv',d:'2026-08-26',t:'18:15',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'8-26-26-millbridge-speedway'},
+ {c:'dv',d:'2026-08-26',t:'19:15',n:'Southern Iowa Speedway',s:'World of Outlaws Late Models',u:DV+'8-26-26-southern-iowa-speedway'},
 
- // ===== FloRacing — Mon Aug 10 =====
- {c:'flo',d:'2026-08-10',t:'18:15',n:'Wild Thing Kart Series at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15844934-2026-wild-thing-kart-series-at-stafford-speedway'},
- {c:'flo',d:'2026-08-10',t:'19:30',n:'American Flat Track — Jackpine Gypsies',s:'Sturgis, SD · Short Track',u:FL+'14798649-2026-american-flat-track-at-jackpine-gypsies-short-track'},
+ // ===== FloRacing — Tue Aug 18 =====
+ {c:'flo',d:'2026-08-18',t:'18:30',n:'FloRacing Night at Marshalltown',s:'Marshalltown Speedway · Marshalltown, IA',u:FL+'14925481-2026-floracing-night-in-america-at-marshalltown-speedway'},
 
- // ===== FloRacing — Tue Aug 11 =====
- {c:'flo',d:'2026-08-11',t:'19:45',n:'Winged Sprint Car Shootout at Marshalltown',s:'Marshalltown Speedway · Marshalltown, IA',u:FL+'14874777-2026-winged-sprint-car-shootout-at-marshalltown-speedway'},
- {c:'flo',d:'2026-08-11',t:'20:00',n:'Front Row Challenge at Southern Iowa',s:'Southern Iowa Speedway · Oskaloosa, IA',u:FL+'15306505-2026-front-row-challenge-at-southern-iowa-speedway'},
+ // ===== FloRacing — Wed Aug 19 =====
+ {c:'flo',d:'2026-08-19',t:'18:45',n:'FloRacing Night in America at Mason City',s:'Mason City Motor Speedway · Mason City, IA',u:FL+'14925485-2026-floracing-night-in-america-at-mason-city-motor-speedway'},
 
- // ===== FloRacing — Wed Aug 12 =====
- {c:'flo',d:'2026-08-12',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
- {c:'flo',d:'2026-08-12',t:'17:30',n:'Tekton 250 Battle at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788592-2026-tekton-250-battle-at-berlin-at-berlin-raceway'},
+ // ===== FloRacing — Thu Aug 20 =====
+ {c:'flo',d:'2026-08-20',t:'19:00',n:'Southern Nationals at Toccoa',s:'Toccoa Raceway · Toccoa, GA',u:FL+'15000423-2026-southern-nationals-at-toccoa-raceway'},
 
- // ===== FloRacing — Thu Aug 13 =====
- {c:'flo',d:'2026-08-13',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
- {c:'flo',d:'2026-08-13',t:null,n:'FALS Cup Special at Fairbury',s:'Fairbury Speedway · Fairbury, IL',u:FL+'16107435-2026-fals-cup-special-at-fairbury-speedway'},
+ // ===== FloRacing — Fri Aug 21 =====
+ {c:'flo',d:'2026-08-21',t:'16:00',n:'Kyle Busch Invitational at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'16117090-2026-the-kyle-busch-invitational-at-bowman-gray-stadium'},
+ {c:'flo',d:'2026-08-21',t:'17:15',n:'Weekly Racing at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15455390-2026-weekly-racing-at-stafford-speedway'},
+ {c:'flo',d:'2026-08-21',t:'19:15',n:'NAPA All Star Sprints at I-96 Speedway',s:'I-96 Speedway · Lake Odessa, MI',u:FL+'14828413-2026-napa-all-star-circuit-of-champions-at-i-96-speedway'},
+ {c:'flo',d:'2026-08-21',t:'19:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788602-2026-nascar-weekly-racing-at-riverhead-raceway'},
+ {c:'flo',d:'2026-08-21',t:'20:30',n:'High Limit Racing at Santa Maria',s:'Santa Maria Speedway · Nipomo, CA',u:FL+'14712285-2026-high-limit-racing-at-santa-maria-speedway'},
+ {c:'flo',d:'2026-08-21',t:null,n:'Dirt Duels at NHMS',s:'New Hampshire Motor Speedway · Loudon, NH',u:FL+'15784189-2026-dirt-duels-at-new-hampshire-motor-speedway'},
+ {c:'flo',d:'2026-08-21',t:null,n:'Empire Super Sprints at Autodrome Granby',s:'Autodrome Granby · Granby, QC',u:FL+'15788608-2026-empire-super-sprints-at-autodrome-granby'},
 
- // ===== FloRacing — Fri Aug 14 =====
- {c:'flo',d:'2026-08-14',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
- {c:'flo',d:'2026-08-14',t:'18:15',n:'Weekly Racing at Utica-Rome',s:'Utica-Rome Speedway · Vernon, NY',u:FL+'15339073-2026-weekly-racing-at-utica-rome-speedway'},
- {c:'flo',d:'2026-08-14',t:'19:00',n:'USAC National Midgets at Coles County',s:'Coles County Speedway · Mattoon, IL',u:FL+'15295019-2026-usac-nos-energy-drink-national-midgets-at-coles-county-speedway'},
- {c:'flo',d:'2026-08-14',t:'19:00',n:'Captain of the Creek at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'15686459-2026-imca-captain-of-the-creek-at-141-speedway'},
- {c:'flo',d:'2026-08-14',t:'19:00',n:'MARS Illinois Valley Showdown at LaSalle',s:'LaSalle Speedway · La Salle, IL',u:FL+'15686453-2026-mars-illinois-valley-showdown-at-lasalle-speedway'},
- {c:'flo',d:'2026-08-14',t:'19:30',n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788589-2026-nascar-weekly-racing-at-riverhead-raceway'},
- {c:'flo',d:'2026-08-14',t:null,n:'Lucas Oil Topless 100 at Batesville',s:'Batesville Motor Speedway · Locust Grove, AR',u:FL+'15686478-2026-lucas-oil-topless-100-at-batesville-motor-speedway'},
- {c:'flo',d:'2026-08-14',t:null,n:'RoC Sportsman at Spencer',s:'Spencer Speedway · Williamson, NY',u:FL+'15686408-2026-race-of-champions-sportsman-at-spencer-speedway'},
- {c:'flo',d:'2026-08-14',t:null,n:'Great Lakes Pro Am at Lake Erie',s:'Lake Erie Speedway · North East, PA',u:FL+'15686476-2026-great-lakes-pro-am-series-at-lake-erie-speedway'},
- {c:'flo',d:'2026-08-14',t:null,n:'Weekly Racing at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15455391-2026-weekly-racing-at-stafford-speedway'},
- {c:'flo',d:'2026-08-14',t:null,n:'Summer Showdown at Evergreen',s:'Evergreen Speedway · Monroe, WA',u:FL+'15686471-2026-summer-showdown-at-evergreen-speedway'},
- {c:'flo',d:'2026-08-14',t:null,n:'NASCAR Weekly at Autodrome Granby',s:'Autodrome Granby · Granby, QC',u:FL+'15788593-2026-nascar-weekly-racing-at-autodrome-granby'},
+ // ===== FloRacing — Sat Aug 22 =====
+ {c:'flo',d:'2026-08-22',t:'16:30',n:'CARS Tour at Anderson',s:'Anderson Motor Speedway · Williamston, SC',u:FL+'14928350-2026-cars-tour-at-anderson-motor-speedway'},
+ {c:'flo',d:'2026-08-22',t:'17:30',n:'Motor Mountain Masters at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788730-2026-cra-motor-mountain-masters-150-at-jennerstown'},
+ {c:'flo',d:'2026-08-22',t:'17:50',n:'IRA Sprints at Wilmot',s:'Wilmot Raceway · Salem Lakes, WI',u:FL+'15059628-2026-ira-sprints-at-wilmot-raceway'},
+ {c:'flo',d:'2026-08-22',t:'18:00',n:'RoC Sportsman at Shangri-La II',s:'Shangri-La II Motor Speedway · Owego, NY',u:FL+'15686480-2026-race-of-champions-sportsman-at-shangri-la-ii-speedway'},
+ {c:'flo',d:'2026-08-22',t:'18:00',n:'Living Legends Dream Race at Port Royal',s:'Port Royal Speedway · Port Royal, PA',u:FL+'14857529-2026-living-legends-dream-race-at-port-royal-speedway'},
+ {c:'flo',d:'2026-08-22',t:'18:20',n:'NASCAR Weekly Racing at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788609-2026-nascar-weekly-racing-at-jennerstown-speedway'},
+ {c:'flo',d:'2026-08-22',t:'18:35',n:'NASCAR Weekly Racing at South Boston',s:'South Boston Speedway · South Boston, VA',u:FL+'15788611-2026-nascar-weekly-racing-at-south-boston-speedway'},
+ {c:'flo',d:'2026-08-22',t:'18:55',n:'IMCA Weekly Racing at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'15686463-2026-imca-weekly-racing-at-141-speedway'},
+ {c:'flo',d:'2026-08-22',t:'19:00',n:'NASCAR Weekly Racing at Hickory',s:'Hickory Motor Speedway · Newton, NC',u:FL+'15788604-2026-nascar-weekly-racing-at-hickory-motor-speedway'},
+ {c:'flo',d:'2026-08-22',t:'19:00',n:'NASCAR Weekly Racing at Langley',s:'Langley Speedway · Hampton, VA',u:FL+'15788605-2026-nascar-weekly-racing-at-langley-speedway'},
+ {c:'flo',d:'2026-08-22',t:'20:30',n:'High Limit Racing at Tulare',s:'Tulare Thunderbowl Raceway · Tulare, CA',u:FL+'14712280-2026-high-limit-racing-at-tulare-thunderbowl-raceway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'NWMT at New Hampshire',s:'New Hampshire Motor Speedway · Loudon, NH',u:FL+'15686465-2026-nascar-whelen-modified-tour-at-new-hampshire-motor-speedway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'USAC Bettenhausen 100 at Illinois',s:'Illinois State Fairgrounds · Springfield, IL',u:FL+'15295014-2026-usac-bettenhausen-100-at-illinois-state-fairgrounds'},
+ {c:'flo',d:'2026-08-22',t:null,n:'Race for the Million at Colorado Nat\'l',s:'Colorado National Speedway · Dacono, CO',u:FL+'15616372-2026-race-for-the-million-at-colorado-national-speedway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'NASCAR Weekly Racing at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788606-2026-nascar-weekly-racing-at-riverhead-raceway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'NASCAR Season Finale at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'15520410-2026-nascar-season-finale-at-bowman-gray-stadium'},
+ {c:'flo',d:'2026-08-22',t:null,n:'NASCAR Weekly Racing at Berlin',s:'Berlin Raceway · Marne, MI',u:FL+'15788603-2026-nascar-weekly-racing-at-berlin-raceway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'Championship Night at Oswego',s:'Oswego Speedway · Oswego, NY',u:FL+'15404963-2026-championship-night-at-oswego-speedway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'Slamfest at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686474-2026-slamfest-at-slinger-speedway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'NAPA All Star Sprints at Butler',s:'Butler Motor Speedway · Quincy, MI',u:FL+'14828417-2026-napa-all-star-circuit-of-champions-at-butler-speedway'},
+ {c:'flo',d:'2026-08-22',t:null,n:'American Flat Track at Peoria',s:'Peoria Speedway · Peoria, IL',u:FL+'14798648-2026-american-flat-track-at-peoria-tt'},
 
- // ===== FloRacing — Sat Aug 15 =====
- {c:'flo',d:'2026-08-15',t:'08:00',n:'NASCAR Youth Series at Richmond',s:'Richmond Raceway KY · Richmond, KY',u:FL+'15346144-2026-nascar-youth-series-at-richmond-raceway'},
- {c:'flo',d:'2026-08-15',t:'17:00',n:'Hasty Bake High Limit Room',s:'Knoxville Raceway · Knoxville, IA (studio)',u:FL+'16100373-2026-hasty-bake-high-limit-room-live-at-knoxville-nationals'},
- {c:'flo',d:'2026-08-15',t:'18:00',n:'Championship Night at Fonda',s:'Fonda Speedway · Fonda, NY',u:FL+'15398618-2026-championship-night-at-fonda-speedway'},
- {c:'flo',d:'2026-08-15',t:'18:20',n:'NASCAR Weekly Racing at Jennerstown',s:'Jennerstown Speedway · Jennerstown, PA',u:FL+'15788586-2026-nascar-weekly-racing-at-jennerstown-speedway'},
- {c:'flo',d:'2026-08-15',t:'19:00',n:'USAC National Midgets at Coles County',s:'Coles County Speedway · Mattoon, IL',u:FL+'15295019-2026-usac-nos-energy-drink-national-midgets-at-coles-county-speedway'},
- {c:'flo',d:'2026-08-15',t:'19:00',n:'Captain of the Creek at 141 Speedway',s:'141 Speedway · Maribel, WI',u:FL+'15686459-2026-imca-captain-of-the-creek-at-141-speedway'},
- {c:'flo',d:'2026-08-15',t:'19:00',n:'MARS Illinois Valley Showdown at LaSalle',s:'LaSalle Speedway · La Salle, IL',u:FL+'15686453-2026-mars-illinois-valley-showdown-at-lasalle-speedway'},
- {c:'flo',d:'2026-08-15',t:null,n:'Mr. Supermodified at Oswego',s:'Oswego Speedway · Oswego, NY',u:FL+'15404961-2026-mr-supermodified-at-oswego-speedway'},
- {c:'flo',d:'2026-08-15',t:null,n:'RoC Modifieds at Lancaster',s:'Lancaster National Speedway · Lancaster, NY',u:FL+'15686430-2026-race-of-champions-modifieds-at-lancaster-motorplex'},
- {c:'flo',d:'2026-08-15',t:null,n:'NASCAR Mods Twin 25s at Bowman Gray',s:'Bowman Gray Stadium · Winston-Salem, NC',u:FL+'15520396-2026-nascar-modified-twin-25s-at-bowman-gray-stadium'},
- {c:'flo',d:'2026-08-15',t:null,n:'Lucas Oil Topless 100 at Batesville',s:'Batesville Motor Speedway · Locust Grove, AR',u:FL+'15686478-2026-lucas-oil-topless-100-at-batesville-motor-speedway'},
- {c:'flo',d:'2026-08-15',t:null,n:'Great Lakes Pro Am at Lake Erie',s:'Lake Erie Speedway · North East, PA',u:FL+'15686476-2026-great-lakes-pro-am-series-at-lake-erie-speedway'},
- {c:'flo',d:'2026-08-15',t:null,n:'Summer Showdown at Evergreen',s:'Evergreen Speedway · Monroe, WA',u:FL+'15686471-2026-summer-showdown-at-evergreen-speedway'},
+ // ===== FloRacing — Sun Aug 23 =====
+ {c:'flo',d:'2026-08-23',t:'17:50',n:'IRA Sprints at Angell Park',s:'Angell Park Speedway · Sun Prairie, WI',u:FL+'15059637-2026-ira-sprints-at-angell-park-speedway'},
+ {c:'flo',d:'2026-08-23',t:'20:30',n:'High Limit Racing at Placerville',s:'Placerville Speedway · Placerville, CA',u:FL+'14712284-2026-high-limit-racing-at-placerville-speedway'},
 
- // ===== FloRacing — Sun Aug 16 =====
- {c:'flo',d:'2026-08-16',t:'19:00',n:'USAC National Midgets at Jacksonville',s:'Jacksonville Speedway · Jacksonville, IL',u:FL+'15295015-2026-usac-nos-energy-drink-national-midgets-at-jacksonville-speedway'},
- {c:'flo',d:'2026-08-16',t:null,n:'Go-Kart Night at Slinger',s:'Slinger Speedway · Slinger, WI',u:FL+'15686458-2026-go-kart-night-at-slinger-speedway'},
+ // ===== FloRacing — Mon Aug 24 =====
+ {c:'flo',d:'2026-08-24',t:'18:15',n:'Wild Thing Kart Series at Stafford',s:'Stafford Motor Speedway · Stafford, CT',u:FL+'15844933-2026-wild-thing-kart-series-at-stafford-speedway'},
+
+ // ===== FloRacing — Tue Aug 25 =====
+ {c:'flo',d:'2026-08-25',t:'18:30',n:'Short Track Super Series at Middleford',s:'Middleford Speedway · Seaford, DE',u:FL+'15398612-2026-short-track-super-series-at-middleford-speedway'},
+
+ // ===== FloRacing — Thu Aug 27 =====
+ {c:'flo',d:'2026-08-27',t:'18:15',n:'USAC Sprint Car Smackdown at Kokomo',s:'Kokomo Speedway · Kokomo, IN',u:FL+'15295013-2026-usac-sprint-car-smackdown-at-kokomo-speedway'},
+ {c:'flo',d:'2026-08-27',t:'19:00',n:'Run-What-U-Brung at Thunder Road',s:'Thunder Road · Barre, VT',u:FL+'14870818-2026-run-what-u-brung-at-thunder-road-speedbowl'},
+ {c:'flo',d:'2026-08-27',t:'21:00',n:'HLR Gold Cup at Silver Dollar',s:'Silver Dollar Speedway · Chico, CA',u:FL+'14712277-2026-hlr-gold-cup-race-of-champions-at-silver-dollar-speedway'},
 
  // ===== Packers =====
- {c:'gb',d:'2026-08-13',t:'19:00',n:'Packers at Pittsburgh Steelers',s:'Pre 1 · Acrisure Stadium · Packers TV',u:'packers/'},
+ {c:'gb',d:'2026-08-21',t:'21:00',n:'Packers at Denver Broncos',s:'Pre 2 · Empower Field · Packers TV',u:'https://ackleytvguide.github.io/packers/'},
 ];
 
 // ---- config -----------------------------------------------------------
-const DAYS = ['2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16'];
+const DAYS = ['2026-08-17','2026-08-18','2026-08-19','2026-08-20','2026-08-21','2026-08-22','2026-08-23','2026-08-24','2026-08-25','2026-08-26','2026-08-27'];
 let START = 15*60, END = 23*60;               // recomputed per day in render()
 const PXPM = 2.1, BLOCK = 175;                // px per minute, nominal block length
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
