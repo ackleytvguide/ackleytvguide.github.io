@@ -19,6 +19,8 @@
     --gb:#ffb612;
     --mia:#1fb6c9;
     --mia-d:#0a4a52;
+    --tb:#d50a0a;
+    --tb-d:#4a0808;
     --now:#ff3b5c;
     --ok:#4be08a;
   }
@@ -94,6 +96,7 @@
   .flo .nm{color:var(--flo)}
   .gb .nm{color:var(--gb)}
   .mia .nm{color:var(--mia)}
+  .tb .nm{color:var(--tb)}
   .lanes{flex:1 1 auto;position:relative;padding:7px 0}
   .lane{position:relative;height:70px;margin-bottom:7px}
   .lane:last-child{margin-bottom:0}
@@ -119,6 +122,7 @@
   .ev.flo{background:linear-gradient(180deg,#0d5f85,#083f59);border-left-color:var(--flo)}
   .ev.gb{background:linear-gradient(180deg,#2c6b4f,#173f2e);border-left-color:var(--gb)}
   .ev.mia{background:linear-gradient(180deg,#0e7a87,#0a4a52);border-left-color:var(--mia)}
+  .ev.tb{background:linear-gradient(180deg,#8f1414,#4a0808);border-left-color:var(--tb)}
   .ev:hover{filter:brightness(1.25)}
   .ev.cancelled{opacity:.45;text-decoration:line-through}
   .ev.past{opacity:.4}
@@ -139,6 +143,7 @@
   .tbd a.flo{background:#083f59;border-left:3px solid var(--flo)}
   .tbd a.gb{background:#173f2e;border-left:3px solid var(--gb)}
   .tbd a.mia{background:#0a4a52;border-left:3px solid var(--mia)}
+  .tbd a.tb{background:#4a0808;border-left:3px solid var(--tb)}
   .tbd a:hover{filter:brightness(1.3)}
   .empty{padding:26px 16px;color:var(--dim);font-size:13px;text-align:center}
 
@@ -146,7 +151,7 @@
   footer a{color:var(--flo)}
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 20px 12px;font-size:11px;color:var(--dim)}
   .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)} .legend .c{background:var(--gb)} .legend .d{background:var(--mia)}
+  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)} .legend .c{background:var(--gb)} .legend .d{background:var(--mia)} .legend .e{background:var(--tb)}
   @media (max-width:640px){
     .chanhead,.chanlabel{flex-basis:104px}
     header{padding:14px}
@@ -177,6 +182,7 @@
   <span><i class="b"></i>FloRacing</span>
   <span><i class="c"></i>Packers</span>
   <span><i class="d"></i>Dolphins</span>
+  <span><i class="e"></i>Buccaneers</span>
   <span>Click any block to open the event page</span>
 </div>
 
@@ -188,6 +194,7 @@
   Excluded from FloRacing: drag racing, motocross/supercross, road racing, PBR, and the 24/7 channel.
   Packers schedule from <a href="https://www.packers.com/schedule/">packers.com</a> — <a href="https://ackleytvguide.github.io/packers/">see the full season</a>.
   Dolphins schedule from <a href="https://www.miamidolphins.com/schedule/">miamidolphins.com</a> — <a href="https://ackleytvguide.github.io/dolphins/">see the full season</a>.
+  Buccaneers schedule from <a href="https://www.buccaneers.com/schedule/">buccaneers.com</a> — <a href="https://ackleytvguide.github.io/bucs/">see the full season</a>.
 </footer>
 
 <script>
@@ -312,6 +319,7 @@ const EV = [
  {c:'flo',d:'2026-09-07',t:'20:00',n:'Louie Vermeil Classic at Calistoga',s:'Calistoga Speedway · Calistoga, CA',u:FL+'15686306-2026-usaccra-louie-vermeil-classic-at-calistoga-speedway'},
  {c:'gb',d:'2026-08-28',t:'20:00',n:'Packers vs Arizona Cardinals',s:'Pre 3 · Lambeau Field · Packers TV',u:'https://ackleytvguide.github.io/packers/'},
  {c:'mia',d:'2026-08-28',t:'19:00',n:'Dolphins vs Atlanta Falcons',s:'Pre 3 · Hard Rock Stadium · CBS Miami',u:'https://ackleytvguide.github.io/dolphins/'},
+ {c:'tb',d:'2026-08-28',t:'19:30',n:'Buccaneers at Jacksonville Jaguars',s:'Pre 3 · EverBank Stadium · WFLA',u:'https://ackleytvguide.github.io/bucs/'},
 ];
 
 // ---- config -----------------------------------------------------------
@@ -428,7 +436,8 @@ function render(){
 
   const day = EV.filter(e=>e.d===sel);
   const dv = day.filter(e=>e.c==='dv'), flo = day.filter(e=>e.c==='flo'),
-        gb = day.filter(e=>e.c==='gb'), mia = day.filter(e=>e.c==='mia');
+        gb = day.filter(e=>e.c==='gb'), mia = day.filter(e=>e.c==='mia'),
+        tb = day.filter(e=>e.c==='tb');
 
   document.getElementById('grid').innerHTML =
     '<div class="timerow"><div class="chanhead">Time (ET)</div>'+
@@ -436,7 +445,8 @@ function render(){
     channelHTML('dv','DIRTVision','World Racing Group', dv)+
     channelHTML('flo','FloRacing','FloSports', flo)+
     channelHTML('gb','Packers','NFL · 2026', gb)+
-    channelHTML('mia','Dolphins','NFL · 2026', mia);
+    channelHTML('mia','Dolphins','NFL · 2026', mia)+
+    channelHTML('tb','Buccaneers','NFL · 2026', tb);
 
   // TBD strip
   const tbd = day.filter(e=>!e.t);
@@ -461,8 +471,8 @@ function render(){
     else if(diff<1440) when='in '+Math.floor(diff/60)+'h '+(diff%60)+'m';
     else when='in '+Math.floor(diff/1440)+' day'+(Math.floor(diff/1440)===1?'':'s');
     un.innerHTML='<span class="lbl">Up next</span>'+
-      '<span class="big" style="color:'+({dv:'var(--dv)',flo:'var(--flo)',gb:'var(--gb)',mia:'var(--mia)'}[next.e.c])+'">'+
-      ({dv:'DIRTVision',flo:'FloRacing',gb:'Packers',mia:'Dolphins'}[next.e.c])+'</span>'+
+      '<span class="big" style="color:'+({dv:'var(--dv)',flo:'var(--flo)',gb:'var(--gb)',mia:'var(--mia)',tb:'var(--tb)'}[next.e.c])+'">'+
+      ({dv:'DIRTVision',flo:'FloRacing',gb:'Packers',mia:'Dolphins',tb:'Buccaneers'}[next.e.c])+'</span>'+
       '<span class="big">'+next.e.n+'</span>'+
       '<span class="meta">'+DOW[o.getDay()]+' '+MON[o.getMonth()]+' '+o.getDate()+' · '+fmt(next.e.t)+' ET · '+when+'</span>'+
       '<a href="'+next.e.u+'" target="_blank" rel="noopener" style="margin-left:auto;color:var(--ok);text-decoration:none;font-weight:600">Open ↗</a>';
