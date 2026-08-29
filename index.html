@@ -21,6 +21,10 @@
     --mia-d:#0a4a52;
     --tb:#d50a0a;
     --tb-d:#4a0808;
+    --wis:#e8455f;
+    --wis-d:#5c1420;
+    --psu:#9fb3d9;
+    --psu-d:#1e2b45;
     --now:#ff3b5c;
     --ok:#4be08a;
   }
@@ -97,6 +101,8 @@
   .gb .nm{color:var(--gb)}
   .mia .nm{color:var(--mia)}
   .tb .nm{color:var(--tb)}
+  .wis .nm{color:var(--wis)}
+  .psu .nm{color:var(--psu)}
   .lanes{flex:1 1 auto;position:relative;padding:7px 0}
   .lane{position:relative;height:70px;margin-bottom:7px}
   .lane:last-child{margin-bottom:0}
@@ -123,6 +129,8 @@
   .ev.gb{background:linear-gradient(180deg,#2c6b4f,#173f2e);border-left-color:var(--gb)}
   .ev.mia{background:linear-gradient(180deg,#0e7a87,#0a4a52);border-left-color:var(--mia)}
   .ev.tb{background:linear-gradient(180deg,#8f1414,#4a0808);border-left-color:var(--tb)}
+  .ev.wis{background:linear-gradient(180deg,#9c2437,#5c1420);border-left-color:var(--wis)}
+  .ev.psu{background:linear-gradient(180deg,#39496b,#1e2b45);border-left-color:var(--psu)}
   .ev:hover{filter:brightness(1.25)}
   .ev.cancelled{opacity:.45;text-decoration:line-through}
   .ev.past{opacity:.4}
@@ -144,6 +152,8 @@
   .tbd a.gb{background:#173f2e;border-left:3px solid var(--gb)}
   .tbd a.mia{background:#0a4a52;border-left:3px solid var(--mia)}
   .tbd a.tb{background:#4a0808;border-left:3px solid var(--tb)}
+  .tbd a.wis{background:#5c1420;border-left:3px solid var(--wis)}
+  .tbd a.psu{background:#1e2b45;border-left:3px solid var(--psu)}
   .tbd a:hover{filter:brightness(1.3)}
   .empty{padding:26px 16px;color:var(--dim);font-size:13px;text-align:center}
 
@@ -151,7 +161,7 @@
   footer a{color:var(--flo)}
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 20px 12px;font-size:11px;color:var(--dim)}
   .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)} .legend .c{background:var(--gb)} .legend .d{background:var(--mia)} .legend .e{background:var(--tb)}
+  .legend .a{background:var(--dv)} .legend .b{background:var(--flo)} .legend .c{background:var(--gb)} .legend .d{background:var(--mia)} .legend .e{background:var(--tb)} .legend .f{background:var(--wis)} .legend .g{background:var(--psu)}
   @media (max-width:640px){
     .chanhead,.chanlabel{flex-basis:104px}
     header{padding:14px}
@@ -183,6 +193,8 @@
   <span><i class="c"></i>Packers</span>
   <span><i class="d"></i>Dolphins</span>
   <span><i class="e"></i>Buccaneers</span>
+  <span><i class="f"></i>Badgers</span>
+  <span><i class="g"></i>Penn State</span>
   <span>Click any block to open the event page</span>
 </div>
 
@@ -195,6 +207,9 @@
   Packers schedule from <a href="https://www.packers.com/schedule/">packers.com</a> — <a href="https://ackleytvguide.github.io/packers/">see the full season</a>.
   Dolphins schedule from <a href="https://www.miamidolphins.com/schedule/">miamidolphins.com</a> — <a href="https://ackleytvguide.github.io/dolphins/">see the full season</a>.
   Buccaneers schedule from <a href="https://www.buccaneers.com/schedule/">buccaneers.com</a> — <a href="https://ackleytvguide.github.io/bucs/">see the full season</a>.
+  Badgers schedule from <a href="https://uwbadgers.com/sports/football/schedule">uwbadgers.com</a> — <a href="https://ackleytvguide.github.io/badgers/">see the full season</a>.
+  Penn State schedule from <a href="https://gopsusports.com/sports/football/schedule">gopsusports.com</a> — <a href="https://ackleytvguide.github.io/pennstate/">see the full season</a>.
+  College kickoff times are set about 6&ndash;12 days out, so games further ahead show as TBD until the networks announce.
 </footer>
 
 <script>
@@ -320,6 +335,8 @@ const EV = [
  {c:'gb',d:'2026-08-28',t:'20:00',n:'Packers vs Arizona Cardinals',s:'Pre 3 · Lambeau Field · Packers TV',u:'https://ackleytvguide.github.io/packers/'},
  {c:'mia',d:'2026-08-28',t:'19:00',n:'Dolphins vs Atlanta Falcons',s:'Pre 3 · Hard Rock Stadium · CBS Miami',u:'https://ackleytvguide.github.io/dolphins/'},
  {c:'tb',d:'2026-08-28',t:'19:30',n:'Buccaneers at Jacksonville Jaguars',s:'Pre 3 · EverBank Stadium · WFLA',u:'https://ackleytvguide.github.io/bucs/'},
+ {c:'wis',d:'2026-09-06',t:'19:30',n:'Badgers vs Notre Dame',s:'Gm 1 · Lambeau Field · NBC',u:'https://ackleytvguide.github.io/badgers/'},
+ {c:'psu',d:'2026-09-05',t:'15:30',n:'Penn State vs Marshall',s:'Gm 1 · Beaver Stadium · FS1',u:'https://ackleytvguide.github.io/pennstate/'},
 ];
 
 // ---- config -----------------------------------------------------------
@@ -437,7 +454,8 @@ function render(){
   const day = EV.filter(e=>e.d===sel);
   const dv = day.filter(e=>e.c==='dv'), flo = day.filter(e=>e.c==='flo'),
         gb = day.filter(e=>e.c==='gb'), mia = day.filter(e=>e.c==='mia'),
-        tb = day.filter(e=>e.c==='tb');
+        tb = day.filter(e=>e.c==='tb'),
+        wis = day.filter(e=>e.c==='wis'), psu = day.filter(e=>e.c==='psu');
 
   document.getElementById('grid').innerHTML =
     '<div class="timerow"><div class="chanhead">Time (ET)</div>'+
@@ -446,7 +464,9 @@ function render(){
     channelHTML('flo','FloRacing','FloSports', flo)+
     channelHTML('gb','Packers','NFL · 2026', gb)+
     channelHTML('mia','Dolphins','NFL · 2026', mia)+
-    channelHTML('tb','Buccaneers','NFL · 2026', tb);
+    channelHTML('tb','Buccaneers','NFL · 2026', tb)+
+    channelHTML('wis','Badgers','NCAA · 2026', wis)+
+    channelHTML('psu','Penn State','NCAA · 2026', psu);
 
   // TBD strip
   const tbd = day.filter(e=>!e.t);
@@ -471,8 +491,8 @@ function render(){
     else if(diff<1440) when='in '+Math.floor(diff/60)+'h '+(diff%60)+'m';
     else when='in '+Math.floor(diff/1440)+' day'+(Math.floor(diff/1440)===1?'':'s');
     un.innerHTML='<span class="lbl">Up next</span>'+
-      '<span class="big" style="color:'+({dv:'var(--dv)',flo:'var(--flo)',gb:'var(--gb)',mia:'var(--mia)',tb:'var(--tb)'}[next.e.c])+'">'+
-      ({dv:'DIRTVision',flo:'FloRacing',gb:'Packers',mia:'Dolphins',tb:'Buccaneers'}[next.e.c])+'</span>'+
+      '<span class="big" style="color:'+({dv:'var(--dv)',flo:'var(--flo)',gb:'var(--gb)',mia:'var(--mia)',tb:'var(--tb)',wis:'var(--wis)',psu:'var(--psu)'}[next.e.c])+'">'+
+      ({dv:'DIRTVision',flo:'FloRacing',gb:'Packers',mia:'Dolphins',tb:'Buccaneers',wis:'Badgers',psu:'Penn State'}[next.e.c])+'</span>'+
       '<span class="big">'+next.e.n+'</span>'+
       '<span class="meta">'+DOW[o.getDay()]+' '+MON[o.getMonth()]+' '+o.getDate()+' · '+fmt(next.e.t)+' ET · '+when+'</span>'+
       '<a href="'+next.e.u+'" target="_blank" rel="noopener" style="margin-left:auto;color:var(--ok);text-decoration:none;font-weight:600">Open ↗</a>';

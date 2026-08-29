@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Badgers 2026 Schedule — Ackley TV Guide</title>
+<style>
+  :root{
+    --bg:#0a1020; --panel:#111a30; --panel2:#16223d; --grid:#243357;
+    --ink:#e8eefc; --dim:#8ea0c8; --faint:#5b6b91;
+    --tbred:#e8455f; --tborange:#ffb3c0; --now:#ff3b5c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.4 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+  a{color:inherit}
+  header{padding:18px 20px 14px;border-bottom:2px solid var(--grid);
+    background:linear-gradient(180deg,#5c1420 0%,#0d1526 100%)}
+  .back{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--tborange);text-decoration:none;margin-bottom:9px}
+  .back:hover{text-decoration:underline}
+  h1{margin:0;font-size:20px;letter-spacing:.12em;text-transform:uppercase}
+  h1 span{color:var(--tbred)}
+  .sub{margin-top:5px;color:var(--dim);font-size:12px}
+
+  .next{margin:14px 20px 0;padding:12px 14px;border-radius:8px;background:var(--panel);
+    border:1px solid var(--grid);display:flex;gap:13px;align-items:center;flex-wrap:wrap}
+  .next .lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--now);font-weight:700}
+  .next .big{font-size:16px;font-weight:600}
+  .next .meta{color:var(--dim);font-size:12px}
+
+  h2{margin:22px 20px 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .wrap{margin:0 20px;border:1px solid var(--grid);border-radius:8px;overflow:hidden;background:var(--panel)}
+
+  .g{display:grid;grid-template-columns:52px 74px 1fr auto;gap:12px;align-items:center;
+    padding:11px 13px;border-bottom:1px solid var(--grid);text-decoration:none;color:inherit}
+  .g:last-child{border-bottom:none}
+  .wk{font-size:10px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;font-weight:600}
+  .dt{line-height:1.25}
+  .dt .d{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .dt .n{font-size:14px;font-weight:600}
+  .mu{min-width:0}
+  .mu .op{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mu .op .at{color:var(--dim);font-weight:400}
+  .mu .vn{font-size:11px;color:var(--faint);margin-top:2px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rt{text-align:right;white-space:nowrap}
+  .rt .tm{font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+  .net{display:inline-block;margin-top:4px;font-size:10px;letter-spacing:.05em;
+    padding:2px 7px;border-radius:4px;background:var(--panel2);color:var(--dim);border:1px solid var(--grid)}
+  .net.cbs{color:#7fc4ff} .net.fox{color:#9db4ff} .net.nbc{color:#ffc46b}
+  .net.espn{color:#ff8f6b} .net.prime{color:#61d6ff} .net.netflix{color:#ff7a7a}
+  .net.nfln{color:#8fe0b4} .net.tbd{color:var(--faint)} .net.local{color:#c9d4ee}
+
+  .g.home{border-left:3px solid var(--tbred)}
+  .g.away{border-left:3px solid transparent}
+  .g.next-up{background:#2e0f16;border-left-color:var(--now)}
+  .g.past{opacity:.42}
+
+  .bye{padding:11px 13px;border-bottom:1px solid var(--grid);font-size:12px;color:var(--faint);
+    letter-spacing:.06em;text-transform:uppercase;background:#0e1729}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:12px 20px 0;font-size:11px;color:var(--dim)}
+  .legend i{display:inline-block;width:3px;height:12px;background:var(--tbred);
+    margin-right:6px;vertical-align:-2px;border-radius:1px}
+  footer{margin:16px 20px 30px;color:var(--faint);font-size:11px;line-height:1.6}
+  footer a{color:#3ec6ff}
+  @media (max-width:560px){
+    .g{grid-template-columns:44px 64px 1fr auto;gap:9px;padding:10px}
+    .mu .op{font-size:13.5px}
+    header,.next,h2,.wrap,.legend,footer{margin-left:10px;margin-right:10px}
+    header{margin:0;padding:14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="../">&larr; All guides</a>
+  <h1><span>Badgers</span> — 2026 Schedule</h1>
+  <div class="sub">Full season · all times Eastern · network shown per game</div>
+</header>
+
+<div class="next" id="next"></div>
+
+<h2>Regular season</h2>
+<div class="wrap">
+  <div class="g away" data-start="2026-09-06T19:30">
+    <div class="wk">Gm 1</div>
+    <div class="dt"><div class="d">Sun</div><div class="n">Sep 6</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Notre Dame</div>
+      <div class="vn">Lambeau Field · Green Bay</div></div>
+    <div class="rt"><div class="tm">7:30 PM</div><span class="net nbc">NBC</span></div>
+  </div>
+  <div class="g home" data-start="2026-09-12T19:15">
+    <div class="wk">Gm 2</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Sep 12</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Western Illinois</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">7:15 PM</div><span class="net nfln">BTN</span></div>
+  </div>
+  <div class="g home" data-start="2026-09-19T12:30">
+    <div class="wk">Gm 3</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Sep 19</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Eastern Michigan</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">12:30 PM</div><span class="net prime">Peacock</span></div>
+  </div>
+  <div class="g away">
+    <div class="wk">Gm 4</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Sep 26</div></div>
+    <div class="mu"><div class="op"><span class="at">at</span> Penn State</div>
+      <div class="vn">Beaver Stadium · University Park</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g home">
+    <div class="wk">Gm 5</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Oct 3</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Michigan State</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g away">
+    <div class="wk">Gm 6</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Oct 17</div></div>
+    <div class="mu"><div class="op"><span class="at">at</span> UCLA</div>
+      <div class="vn">Rose Bowl · Pasadena</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g home">
+    <div class="wk">Gm 7</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Oct 24</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> USC</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g away">
+    <div class="wk">Gm 8</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Oct 31</div></div>
+    <div class="mu"><div class="op"><span class="at">at</span> Iowa</div>
+      <div class="vn">Kinnick Stadium · Iowa City</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g home">
+    <div class="wk">Gm 9</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Nov 7</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Rutgers</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g away">
+    <div class="wk">Gm 10</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Nov 14</div></div>
+    <div class="mu"><div class="op"><span class="at">at</span> Maryland</div>
+      <div class="vn">SECU Stadium · College Park</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g away">
+    <div class="wk">Gm 11</div>
+    <div class="dt"><div class="d">Sat</div><div class="n">Nov 21</div></div>
+    <div class="mu"><div class="op"><span class="at">at</span> Purdue</div>
+      <div class="vn">Ross-Ade Stadium · West Lafayette</div></div>
+    <div class="rt"><div class="tm">TBD</div><span class="net tbd">TBD</span></div>
+  </div>
+  <div class="g home" data-start="2026-11-27T19:30">
+    <div class="wk">Gm 12</div>
+    <div class="dt"><div class="d">Fri</div><div class="n">Nov 27</div></div>
+    <div class="mu"><div class="op"><span class="at">vs</span> Minnesota</div>
+      <div class="vn">Camp Randall Stadium · Madison</div></div>
+    <div class="rt"><div class="tm">7:30 PM</div><span class="net tbd">TBD</span></div>
+  </div>
+</div>
+
+<div class="legend"><span><i></i>Home game at Camp Randall Stadium</span></div>
+
+<footer>
+  Times are Eastern, from <a href="https://uwbadgers.com/sports/football/schedule">uwbadgers.com</a>.
+  College kickoff times are set roughly 6&ndash;12 days out, so games further ahead show as TBD
+  until the networks announce them &mdash; this page is refreshed weekly.
+  &larr; <a href="../">Back to the combined TV guide</a>
+</footer>
+
+<script>
+(function(){
+  const ET_OFF = d => { // Eastern offset in hours for a given local-naive date
+    const y = d.getFullYear();
+    const mar = new Date(y,2,1), nov = new Date(y,10,1);
+    const dstStart = new Date(y,2,1 + ((7 - mar.getDay()) % 7) + 7, 2);
+    const dstEnd   = new Date(y,10,1 + ((7 - nov.getDay()) % 7), 2);
+    return (d >= dstStart && d < dstEnd) ? 4 : 5;
+  };
+  const parse = s => {
+    const [dp,tp] = s.split('T');
+    const [Y,M,D] = dp.split('-').map(Number);
+    const [h,m] = tp.split(':').map(Number);
+    const naive = new Date(Y, M-1, D, h, m);
+    return new Date(Date.UTC(Y, M-1, D, h + ET_OFF(naive), m));
+  };
+  const now = new Date();
+  const rows = [...document.querySelectorAll('.g[data-start]')]
+    .map(el => ({el, dt: parse(el.dataset.start)}));
+  rows.forEach(r => { if (r.dt.getTime() + 3.5*3600e3 < now) r.el.classList.add('past'); });
+
+  const nxt = rows.find(r => r.dt.getTime() + 3.5*3600e3 >= now);
+  const box = document.getElementById('next');
+  if(!nxt){ box.style.display='none'; return; }
+  nxt.el.classList.add('next-up');
+
+  const op = nxt.el.querySelector('.op').textContent.trim();
+  const tm = nxt.el.querySelector('.tm').textContent.trim();
+  const net = nxt.el.querySelector('.net').textContent.trim();
+  const wk = nxt.el.querySelector('.wk').textContent.trim();
+  const d = nxt.el.querySelector('.dt').textContent.trim().replace(/\s+/g,' ');
+
+  const diff = Math.round((nxt.dt - now)/60000);
+  let when;
+  if(diff < 0) when = 'in progress';
+  else if(diff < 60) when = 'in ' + diff + ' min';
+  else if(diff < 1440) when = 'in ' + Math.floor(diff/60) + 'h ' + (diff%60) + 'm';
+  else when = 'in ' + Math.floor(diff/1440) + ' day' + (Math.floor(diff/1440)===1?'':'s');
+
+  box.innerHTML = '<span class="lbl">Next game</span>' +
+    '<span class="big">' + op + '</span>' +
+    '<span class="meta">' + wk + ' · ' + d + ' · ' + tm + ' ET · ' + net + ' · ' + when + '</span>';
+})();
+</script>
+</body>
+</html>
