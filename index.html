@@ -69,17 +69,22 @@
   .day .cnt{font-size:10px;color:var(--dim)}
 
   .wrap{margin:0 20px 26px;border:1px solid var(--grid);border-radius:0 8px 8px 8px;overflow:hidden;background:var(--panel)}
-  .scroller{overflow-x:auto}
+  .scroller{
+    overflow:auto;                 /* both axes -> makes this the scroll box */
+    max-height:70vh; min-height:300px;
+    -webkit-overflow-scrolling:touch;
+  }
   .grid{min-width:1140px;position:relative}
 
   .timerow{
-    display:flex;position:sticky;top:0;z-index:5;
+    display:flex;position:sticky;top:0;z-index:7;
     background:var(--panel2);border-bottom:1px solid var(--grid);
+    box-shadow:0 2px 6px rgba(0,0,0,.45);
   }
   .chanhead{
     flex:0 0 150px;padding:8px 12px;font-size:10px;letter-spacing:.16em;
     text-transform:uppercase;color:var(--dim);border-right:1px solid var(--grid);
-    background:var(--panel2);position:sticky;left:0;z-index:6;
+    background:var(--panel2);position:sticky;left:0;z-index:8;
   }
   .slots{position:relative;flex:1 1 auto;height:34px}
   .tick{
