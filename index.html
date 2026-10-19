@@ -178,7 +178,7 @@
 
 <header>
   <h1><span>Ackley</span> TV Guide</h1>
-  <div class="sub">Oct 12–22, 2026 · all times Eastern · racing, football, and what else is on</div>
+  <div class="sub">Oct 19–29, 2026 · all times Eastern · racing, football, and what else is on</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -223,43 +223,40 @@
 const DV = 'https://dirtvision.com/event/';
 const FL = 'https://www.floracing.com/events/';
 const EV = [
-{c:'dv',d:'2026-10-13',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-13-26-millbridge-speedway'},
-{c:'dv',d:'2026-10-14',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-14-26-millbridge-speedway'},
-{c:'dv',d:'2026-10-16',t:'17:45',n:'Brockville Ontario Speedway',s:'Super DIRTcar Series',u:DV+'10-16-26-brockville-ontario-speedway'},
-{c:'dv',d:'2026-10-16',t:'18:15',n:'Lincoln Park Speedway',s:'World of Outlaws Sprint Cars',u:DV+'10-16-26-lincoln-park-speedway'},
-{c:'dv',d:'2026-10-16',t:'19:45',n:'Creek County Speedway',s:'American Sprint Car Series',u:DV+'10-16-26-creek-county-speedway'},
-{c:'dv',d:'2026-10-17',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-17-26-millbridge-speedway'},
-{c:'dv',d:'2026-10-17',t:'18:15',n:'Cedar Lake Speedway',s:'Cedar Lake Speedway',u:DV+'10-17-26-cedar-lake-speedway'},
-{c:'dv',d:'2026-10-17',t:'19:15',n:'Belle Clair Fairgrounds Park Speedway',s:'World of Outlaws Sprint Cars',u:DV+'10-17-26-belle-clair-fairgrounds-park-speedway'},
-{c:'flo',d:'2026-10-16',t:'17:15',n:'Lucas Oil DTWC at WVMS, Day 1',s:'West Virginia Motor Speedway · Mineral Wells, WV',u:FL+'14828270-2026-lucas-oil-dtwc-at-west-virginia-motor-speedway'},
-{c:'flo',d:'2026-10-16',t:'18:00',n:'STSS Octoberfest at Hagerstown, Night 1',s:'Hagerstown Speedway · Hagerstown, MD',u:FL+'15398638-2026-stss-octoberfest-at-hagerstown-speedway'},
-{c:'flo',d:'2026-10-16',t:'18:45',n:'USAC National Sprints at Dodge City',s:'Dodge City Raceway Park · Dodge City, KS',u:FL+'15295034-2026-usac-amsoil-national-sprint-cars-at-dodge-city-raceway-park'},
-{c:'flo',d:'2026-10-16',t:'19:15',n:'High Limit Racing at Texas, Day 1',s:'Texas Motor Speedway · Fort Worth, TX',u:FL+'14712301-2026-high-limit-racing-all-in-championship-at-texas-motor-speedway'},
-{c:'flo',d:'2026-10-17',t:null,n:'Lucas Oil DTWC at WVMS, Day 2',s:'West Virginia Motor Speedway · Mineral Wells, WV',u:FL+'14828270-2026-lucas-oil-dtwc-at-west-virginia-motor-speedway'},
-{c:'flo',d:'2026-10-17',t:'12:50',n:'SMART Modified Tour at North Wilkesboro',s:'North Wilkesboro Speedway · North Wilkesboro, NC',u:FL+'15068983-2026-smart-modified-tour-at-north-wilkesboro-motor-speedway'},
-{c:'flo',d:'2026-10-17',t:'13:00',n:'RoC Finale at Shangri-La II',s:'Shangri-La II Motor Speedway · Owego, NY',u:FL+'15686509-2026-race-of-champions-finale-at-shangri-la-ii-speedway'},
-{c:'flo',d:'2026-10-17',t:'14:30',n:'CARS Tour at South Boston',s:'South Boston Speedway · South Boston, VA',u:FL+'14928374-2026-cars-tour-season-finale-at-south-boston-speedway'},
-{c:'flo',d:'2026-10-17',t:'17:00',n:'STSS Octoberfest at Hagerstown, Night 2',s:'Hagerstown Speedway · Hagerstown, MD',u:FL+'15398638-2026-stss-octoberfest-at-hagerstown-speedway'},
-{c:'flo',d:'2026-10-17',t:'18:45',n:'USAC National Sprints at Route 66',s:'Route 66 Motor Speedway · Amarillo, TX',u:FL+'15295040-2026-usac-amsoil-national-sprint-cars-at-route-66-motor-speedway'},
-{c:'flo',d:'2026-10-17',t:'19:00',n:'USAC WS Midgets at Ventura',s:'Ventura Raceway · Ventura, CA',u:FL+'15686307-2026-usac-avanti-western-states-midgets-at-ventura-raceway'},
-{c:'flo',d:'2026-10-17',t:'19:15',n:'High Limit Racing at Texas, Day 2',s:'Texas Motor Speedway · Fort Worth, TX',u:FL+'14712301-2026-high-limit-racing-all-in-championship-at-texas-motor-speedway'},
-{c:'flo',d:'2026-10-18',t:'13:00',n:'RoC Finale at Shangri-La II, Day 2',s:'Shangri-La II Motor Speedway · Owego, NY',u:FL+'15686509-2026-race-of-champions-finale-at-shangri-la-ii-speedway'},
-{c:'flo',d:'2026-10-18',t:'20:30',n:'CARS Tour West at Kern',s:'Kevin Harvick\'s Kern County Raceway · Bakersfield, CA',u:FL+'15686511-2026-cars-tour-west-at-kevin-harvicks-kern-county-raceway'},
-{c:'flo',d:'2026-10-18',t:'20:45',n:'NARC Championship Night at Kings',s:'Kings Speedway · Hanford, CA',u:FL+'16117042-2026-narc-cotton-classic-at-kings-speedway'},
-{c:'flo',d:'2026-10-18',t:'22:45',n:'ARCA West at Phoenix',s:'Phoenix Raceway · Avondale, AZ',u:FL+'15265642-2026-arca-west-at-phoenix-international-raceway'},
-{c:'flo',d:'2026-10-21',t:'17:00',n:'No Mercy 17, Day 1',s:'No Mercy 17 · Track TBD',u:FL+'14830295-2026-no-mercy-17'},
-{c:'flo',d:'2026-10-22',t:null,n:'Short Track Super Series at Orange Co.',s:'Orange County Fair Speedway · Middletown, NY',u:FL+'15398637-2026-short-track-super-series-at-orange-county-fair-speedway'},
+{c:'dv',d:'2026-10-23',t:'17:15',n:'Modoc Speedway',s:'World of Outlaws Late Models',u:DV+'10-23-26-modoc-speedway'},
+{c:'dv',d:'2026-10-23',t:'19:15',n:'Texarkana 67 Speedway',s:'World of Outlaws Sprint Cars',u:DV+'10-23-26-texarkana-67-speedway'},
+{c:'dv',d:'2026-10-24',t:'17:15',n:'Modoc Speedway',s:'World of Outlaws Late Models',u:DV+'10-24-26-modoc-speedway'},
+{c:'dv',d:'2026-10-24',t:'18:00',n:'Volusia Speedway Park',s:'Volusia Speedway Park',u:DV+'10-24-26-volusia-speedway-park'},
+{c:'dv',d:'2026-10-24',t:'19:15',n:'Texarkana 67 Speedway',s:'World of Outlaws Sprint Cars',u:DV+'10-24-26-texarkana-67-speedway'},
+{c:'dv',d:'2026-10-27',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-27-26-millbridge-speedway'},
+{c:'dv',d:'2026-10-28',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-28-26-millbridge-speedway'},
+{c:'dv',d:'2026-10-29',t:'17:00',n:'The Dirt Track at Charlotte',s:'World Short Track Championship',u:DV+'10-29-26-the-dirt-track-at-charlotte'},
+{c:'flo',d:'2026-10-21',t:'17:00',n:'No Mercy 17, Day 1',s:'TBD',u:FL+'14830295-2026-no-mercy-17'},
 {c:'flo',d:'2026-10-22',t:null,n:'FloRacing Night in America at Volunteer',s:'Volunteer Speedway · Bulls Gap, TN',u:FL+'14925499-2026-floracing-night-in-america-at-volunteer-speedway'},
-{c:'flo',d:'2026-10-22',t:null,n:'USAC Western World Champs at Central AZ',s:'Central Arizona Raceway · Casa Grande, AZ',u:FL+'15295033-2026-usac-western-world-championships-at-avanti-raceway-park'},
-{c:'flo',d:'2026-10-22',t:'17:00',n:'No Mercy 17, Day 2',s:'No Mercy 17 · Track TBD',u:FL+'14830295-2026-no-mercy-17'},
-{c:'gb',d:'2026-10-18',t:'20:20',n:'Packers vs Dallas Cowboys',s:'Week 6 · Lambeau Field · NBC',u:'https://ackleytvguide.github.io/packers/'},
-{c:'tb',d:'2026-10-18',t:'13:00',n:'Buccaneers vs Pittsburgh Steelers',s:'Week 6 · Raymond James Stadium · CBS',u:'https://ackleytvguide.github.io/bucs/'},
-{c:'wis',d:'2026-10-17',t:null,n:'Badgers at UCLA',s:'Gm 6 · Rose Bowl · TBD',u:'https://ackleytvguide.github.io/badgers/'},
-{c:'psu',d:'2026-10-17',t:null,n:'Penn State at Michigan',s:'Gm 7 · Michigan Stadium · TBD',u:'https://ackleytvguide.github.io/pennstate/'},
+{c:'flo',d:'2026-10-22',t:null,n:'USAC Western World Champs',s:'Central Arizona Raceway · Casa Grande, AZ',u:FL+'15295033-2026-usac-western-world-championships-at-avanti-raceway-park'},
+{c:'flo',d:'2026-10-22',t:'16:45',n:'No Mercy 17, Day 2',s:'TBD',u:FL+'14830295-2026-no-mercy-17'},
+{c:'flo',d:'2026-10-22',t:'17:45',n:'Short Track Super Series',s:'Orange County Fair Speedway · Middletown, NY',u:FL+'15398637-2026-short-track-super-series-at-orange-county-fair-speedway'},
+{c:'flo',d:'2026-10-23',t:null,n:'USAC Western World Champs',s:'Central Arizona Raceway · Casa Grande, AZ',u:FL+'15295033-2026-usac-western-world-championships-at-avanti-raceway-park'},
+{c:'flo',d:'2026-10-23',t:'09:45',n:'No Mercy 17, Day 3',s:'TBD',u:FL+'14830295-2026-no-mercy-17'},
+{c:'flo',d:'2026-10-23',t:'10:00',n:'Sportsman World Finals',s:'TBD',u:FL+'16168217-2026-sportsman-world-finals'},
+{c:'flo',d:'2026-10-23',t:'19:45',n:'Harvest Hustle',s:'Marshalltown Speedway · Marshalltown, IA',u:FL+'14874780-2026-harvest-hustle-at-marshalltown-speedway'},
+{c:'flo',d:'2026-10-24',t:null,n:'USAC Western World Champs',s:'Central Arizona Raceway · Casa Grande, AZ',u:FL+'15295033-2026-usac-western-world-championships-at-avanti-raceway-park'},
+{c:'flo',d:'2026-10-24',t:'09:45',n:'No Mercy 17, Day 4',s:'TBD',u:FL+'14830295-2026-no-mercy-17'},
+{c:'flo',d:'2026-10-24',t:'10:00',n:'Sportsman World Finals',s:'TBD',u:FL+'16168217-2026-sportsman-world-finals'},
+{c:'flo',d:'2026-10-24',t:'16:00',n:'Blue-Gray 100',s:'Cherokee Speedway · Gaffney, SC',u:FL+'15784627-2026-blue-gray-100-at-cherokee-speedway'},
+{c:'flo',d:'2026-10-24',t:'19:45',n:'Harvest Hustle',s:'Marshalltown Speedway · Marshalltown, IA',u:FL+'14874780-2026-harvest-hustle-at-marshalltown-speedway'},
+{c:'flo',d:'2026-10-25',t:'09:45',n:'No Mercy 17, Day 5',s:'TBD',u:FL+'14830295-2026-no-mercy-17'},
+{c:'flo',d:'2026-10-25',t:'16:00',n:'Blue-Gray 100',s:'Cherokee Speedway · Gaffney, SC',u:FL+'15784627-2026-blue-gray-100-at-cherokee-speedway'},
+{c:'flo',d:'2026-10-29',t:null,n:'Trophy Cup',s:'Tulare Thunderbowl Raceway · Tulare, CA',u:FL+'16143192-2026-trophy-cup-at-tulare-thunderbowl-raceway'},
+{c:'gb',d:'2026-10-25',t:'16:25',n:'Packers at Detroit Lions',s:'Week 7 · Ford Field · FOX',u:'https://ackleytvguide.github.io/packers/'},
+{c:'gb',d:'2026-10-29',t:'20:15',n:'Packers vs Carolina Panthers',s:'Week 8 · Lambeau Field · Prime Video',u:'https://ackleytvguide.github.io/packers/'},
+{c:'mia',d:'2026-10-25',t:'13:00',n:'Dolphins at New York Jets',s:'Week 7 · MetLife Stadium · CBS',u:'https://ackleytvguide.github.io/dolphins/'},
+{c:'tb',d:'2026-10-25',t:'13:00',n:'Buccaneers at Carolina Panthers',s:'Week 7 · Bank of America Stadium · FOX',u:'https://ackleytvguide.github.io/bucs/'},
+{c:'wis',d:'2026-10-24',t:'19:30',n:'Badgers vs USC',s:'Gm 7 · Camp Randall Stadium · NBC',u:'https://ackleytvguide.github.io/badgers/'},
 ];
 
 // ---- config -----------------------------------------------------------
-const DAYS = ['2026-10-12','2026-10-13','2026-10-14','2026-10-15','2026-10-16','2026-10-17','2026-10-18','2026-10-19','2026-10-20','2026-10-21','2026-10-22'];
+const DAYS = ['2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-25','2026-10-26','2026-10-27','2026-10-28','2026-10-29'];
 let START = 15*60, END = 23*60;               // recomputed per day in render()
 const PXPM = 2.1, BLOCK = 175;                // px per minute, nominal block length
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
