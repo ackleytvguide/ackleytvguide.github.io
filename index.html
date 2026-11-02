@@ -178,7 +178,7 @@
 
 <header>
   <h1><span>Ackley</span> TV Guide</h1>
-  <div class="sub">Oct 26–Nov 5, 2026 · all times Eastern · racing, football, and what else is on</div>
+  <div class="sub">Nov 2–12, 2026 · all times Eastern · racing, football, and what else is on</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -223,37 +223,24 @@
 const DV = 'https://dirtvision.com/event/';
 const FL = 'https://www.floracing.com/events/';
 const EV = [
-{c:'dv',d:'2026-10-27',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-27-26-millbridge-speedway'},
-{c:'dv',d:'2026-10-28',t:'18:15',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'10-28-26-millbridge-speedway'},
-{c:'dv',d:'2026-10-29',t:'17:00',n:'The Dirt Track at Charlotte',s:'World Short Track Championship',u:DV+'10-29-26-the-dirt-track-at-charlotte'},
-{c:'dv',d:'2026-10-30',t:'16:00',n:'The Dirt Track at Charlotte',s:'World Short Track Championship',u:DV+'10-30-26-the-dirt-track-at-charlotte'},
-{c:'dv',d:'2026-10-31',t:'11:55',n:'The Dirt Track at Charlotte',s:'World Short Track Championship',u:DV+'10-31-26-the-dirt-track-at-charlotte'},
-{c:'dv',d:'2026-10-31',t:'18:00',n:'Georgetown Speedway',s:'Super DIRTcar Series',u:DV+'10-31-26-georgetown-speedway'},
-{c:'dv',d:'2026-11-02',t:'17:45',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'11-2-26-millbridge-speedway'},
-{c:'dv',d:'2026-11-03',t:'17:45',n:'Millbridge Speedway',s:'Millbridge Speedway',u:DV+'11-3-26-millbridge-speedway'},
-{c:'dv',d:'2026-11-04',t:'15:15',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series · WoO Late Models · WoO Sprint Cars',u:DV+'11-4-26-the-dirt-track-at-charlotte'},
-{c:'dv',d:'2026-11-05',t:'14:30',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series · WoO Late Models · WoO Sprint Cars',u:DV+'11-5-26-the-dirt-track-at-charlotte'},
-{c:'flo',d:'2026-10-29',t:null,n:'Trophy Cup at Tulare',s:'Tulare Thunderbowl Raceway · Tulare, CA',u:FL+'16143192-2026-trophy-cup-at-tulare-thunderbowl-raceway'},
-{c:'flo',d:'2026-10-30',t:null,n:'Trophy Cup at Tulare',s:'Tulare Thunderbowl Raceway · Tulare, CA',u:FL+'16143192-2026-trophy-cup-at-tulare-thunderbowl-raceway'},
-{c:'flo',d:'2026-10-30',t:'17:15',n:'Zenith Racing Series at Daytona (Day 1)',s:'Daytona International Speedway · Daytona Beach, FL',u:FL+'16217474-2026-zenith-racing-series-at-daytona'},
-{c:'flo',d:'2026-10-30',t:'17:30',n:'Iron-Man Halloween Nationals (Night 1)',s:'Portsmouth Raceway Park · Portsmouth, OH',u:FL+'16218914-2026-iron-man-halloween-nationals-at-portsmouth-raceway-park'},
-{c:'flo',d:'2026-10-30',t:'18:00',n:'National 100 (Day 1)',s:'East Alabama Motor Speedway · Phenix City, AL',u:FL+'16233306-2026-national-100-at-east-alabama-motor-speedway'},
-{c:'flo',d:'2026-10-31',t:null,n:'Trophy Cup at Tulare',s:'Tulare Thunderbowl Raceway · Tulare, CA',u:FL+'16143192-2026-trophy-cup-at-tulare-thunderbowl-raceway'},
-{c:'flo',d:'2026-10-31',t:'09:00',n:'NASCAR Youth Series at Huntsville',s:'Huntsville Speedway · Huntsville, AL',u:FL+'15346152-2026-nascar-youth-series-at-huntsville'},
-{c:'flo',d:'2026-10-31',t:'10:40',n:'Zenith Racing Series at Daytona (Day 2)',s:'Daytona International Speedway · Daytona Beach, FL',u:FL+'16217474-2026-zenith-racing-series-at-daytona'},
-{c:'flo',d:'2026-10-31',t:'11:00',n:'National 100 (Day 2)',s:'East Alabama Motor Speedway · Phenix City, AL',u:FL+'16233306-2026-national-100-at-east-alabama-motor-speedway'},
-{c:'flo',d:'2026-10-31',t:'17:00',n:'Iron-Man Halloween Nationals (Night 2)',s:'Portsmouth Raceway Park · Portsmouth, OH',u:FL+'16218914-2026-iron-man-halloween-nationals-at-portsmouth-raceway-park'},
-{c:'flo',d:'2026-10-31',t:'19:00',n:'ARCA West at Kern',s:'Kevin Harvick\'s Kern Raceway · Bakersfield, CA',u:FL+'15265645-2026-arca-west-at-kevin-harvicks-kern-raceway'},
-{c:'flo',d:'2026-11-01',t:'10:00',n:'National 100 (Day 3)',s:'East Alabama Motor Speedway · Phenix City, AL',u:FL+'16233306-2026-national-100-at-east-alabama-motor-speedway'},
-{c:'gb',d:'2026-10-29',t:'20:15',n:'Packers vs Carolina Panthers',s:'Week 8 · Lambeau Field · Prime Video',u:'https://ackleytvguide.github.io/packers/'},
-{c:'mia',d:'2026-11-01',t:'16:25',n:'Dolphins vs New England Patriots',s:'Week 8 · Hard Rock Stadium · CBS',u:'https://ackleytvguide.github.io/dolphins/'},
-{c:'tb',d:'2026-11-01',t:'13:00',n:'Buccaneers vs Atlanta Falcons',s:'Week 8 · Raymond James Stadium · FOX',u:'https://ackleytvguide.github.io/bucs/'},
-{c:'wis',d:'2026-10-31',t:'12:00',n:'Badgers at Iowa',s:'Gm 8 · Kinnick Stadium · FOX',u:'https://ackleytvguide.github.io/badgers/'},
-{c:'psu',d:'2026-10-31',t:'16:15',n:'Penn State vs Purdue',s:'Gm 8 · Beaver Stadium · BTN',u:'https://ackleytvguide.github.io/pennstate/'},
+{c:'dv',d:'2026-11-02',t:'18:00',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'11-2-26-millbridge-speedway'},
+{c:'dv',d:'2026-11-03',t:'18:00',n:'Millbridge Speedway',s:'Weekly Racing',u:DV+'11-3-26-millbridge-speedway'},
+{c:'dv',d:'2026-11-04',t:'15:15',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series',u:DV+'11-4-26-the-dirt-track-at-charlotte'},
+{c:'dv',d:'2026-11-05',t:'14:30',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series',u:DV+'11-5-26-the-dirt-track-at-charlotte'},
+{c:'dv',d:'2026-11-06',t:'14:30',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series',u:DV+'11-6-26-the-dirt-track-at-charlotte'},
+{c:'dv',d:'2026-11-07',t:'14:30',n:'The Dirt Track at Charlotte',s:'Super DIRTcar Series',u:DV+'11-7-26-the-dirt-track-at-charlotte'},
+{c:'dv',d:'2026-11-08',t:'19:00',n:'World of Outlaws Celebration',s:'Weekly Racing',u:DV+'11-8-26-world-of-outlaws-awards-celebration'},
+{c:'flo',d:'2026-11-07',t:'16:00',n:'Fall Brawl at Hickory',s:'Hickory Motor Speedway · Newton, NC',u:FL+'15788662-2026-fall-brawl-at-hickory-motor-speedway'},
+{c:'flo',d:'2026-11-07',t:'18:30',n:'USAC WS Midgets at Ventura',s:'Ventura Raceway · Ventura, CA',u:FL+'16277359-2026-usac-avanti-western-states-midgets-at-ventura-raceway'},
+{c:'gb',d:'2026-11-08',t:'16:25',n:'Packers at New England Patriots',s:'Week 9 · Gillette Stadium · FOX',u:'https://ackleytvguide.github.io/packers/'},
+{c:'mia',d:'2026-11-08',t:'13:00',n:'Dolphins vs Detroit Lions',s:'Week 9 · Hard Rock Stadium · FOX',u:'https://ackleytvguide.github.io/dolphins/'},
+{c:'tb',d:'2026-11-08',t:'20:20',n:'Buccaneers at Chicago Bears',s:'Week 9 · Soldier Field · NBC',u:'https://ackleytvguide.github.io/bucs/'},
+{c:'wis',d:'2026-11-07',t:null,n:'Badgers vs Rutgers',s:'Gm 9 · Camp Randall Stadium · TBD',u:'https://ackleytvguide.github.io/badgers/'},
+{c:'psu',d:'2026-11-07',t:null,n:'Penn State at Washington',s:'Gm 9 · Husky Stadium · TBD',u:'https://ackleytvguide.github.io/pennstate/'},
 ];
 
 // ---- config -----------------------------------------------------------
-const DAYS = ['2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30','2026-10-31','2026-11-01','2026-11-02','2026-11-03','2026-11-04','2026-11-05'];
+const DAYS = ['2026-11-02','2026-11-03','2026-11-04','2026-11-05','2026-11-06','2026-11-07','2026-11-08','2026-11-09','2026-11-10','2026-11-11','2026-11-12'];
 let START = 15*60, END = 23*60;               // recomputed per day in render()
 const PXPM = 2.1, BLOCK = 175;                // px per minute, nominal block length
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
