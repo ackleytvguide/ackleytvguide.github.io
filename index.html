@@ -178,7 +178,7 @@
 
 <header>
   <h1><span>Ackley</span> TV Guide</h1>
-  <div class="sub">Nov 9–19, 2026 · all times Eastern · racing, football, and what else is on</div>
+  <div class="sub">Nov 16–26, 2026 · all times Eastern · racing, football, and what else is on</div>
 </header>
 
 <div class="upnext" id="upnext"></div>
@@ -223,24 +223,21 @@
 const DV = 'https://dirtvision.com/event/';
 const FL = 'https://www.floracing.com/events/';
 const EV = [
-{c:'dv',d:'2026-11-14',t:'18:00',n:'Volusia Speedway Park',s:'Volusia Speedway Park',u:DV+'11-14-26-volusia-speedway-park'},
-{c:'flo',d:'2026-11-13',t:null,n:'FloRacing Night in America at Senoia',s:'Senoia Raceway · Senoia, GA',u:FL+'14925500-2026-floracing-night-in-america-at-senoia-raceway'},
-{c:'flo',d:'2026-11-13',t:null,n:'USAC Hangtown 100 at Placerville',s:'Placerville Speedway · Placerville, CA',u:FL+'15295031-2026-usac-hangtown-100-at-placerville-speedway'},
-{c:'flo',d:'2026-11-14',t:null,n:'FloRacing Night in America at Senoia',s:'Senoia Raceway · Senoia, GA',u:FL+'14925500-2026-floracing-night-in-america-at-senoia-raceway'},
-{c:'flo',d:'2026-11-14',t:null,n:'USAC Hangtown 100 at Placerville',s:'Placerville Speedway · Placerville, CA',u:FL+'15295031-2026-usac-hangtown-100-at-placerville-speedway'},
-{c:'flo',d:'2026-11-14',t:'12:30',n:'10th Annual Islip 300 at Riverhead',s:'Riverhead Raceway · Riverhead, NY',u:FL+'15788661-2026-10th-annual-islip-300-at-riverhead-raceway'},
-{c:'flo',d:'2026-11-14',t:'18:15',n:'Governor\'s Cup at New Smyrna (Day 1)',s:'New Smyrna Speedway · New Smyrna Beach, FL',u:FL+'15788675-2026-governors-cup-from-new-smyrna-speedway'},
-{c:'flo',d:'2026-11-15',t:'13:15',n:'Governor\'s Cup at New Smyrna (Day 2)',s:'New Smyrna Speedway · New Smyrna Beach, FL',u:FL+'15788675-2026-governors-cup-from-new-smyrna-speedway'},
-{c:'flo',d:'2026-11-15',t:'19:00',n:'CARS Tour West at Las Vegas',s:'Las Vegas Bullring · Las Vegas, NV',u:FL+'15686516-2026-cars-tour-west-at-las-vegas-bullring'},
-{c:'flo',d:'2026-11-18',t:null,n:'USAC National Midgets at Plaza Park',s:'Plaza Park Raceway · Visalia, CA',u:FL+'15295050-2026-usac-nos-energy-drink-midgets-at-plaza-park-raceway'},
-{c:'gb',d:'2026-11-15',t:'13:00',n:'Packers vs Minnesota Vikings',s:'Week 10 · Lambeau Field · FOX',u:'https://ackleytvguide.github.io/packers/'},
-{c:'mia',d:'2026-11-15',t:'13:00',n:'Dolphins at Indianapolis Colts',s:'Week 10 · Lucas Oil Stadium · CBS',u:'https://ackleytvguide.github.io/dolphins/'},
-{c:'wis',d:'2026-11-14',t:null,n:'Badgers at Maryland',s:'Gm 10 · SECU Stadium · TBD',u:'https://ackleytvguide.github.io/badgers/'},
-{c:'psu',d:'2026-11-14',t:null,n:'Penn State vs Minnesota',s:'Gm 10 · Beaver Stadium · TBD',u:'https://ackleytvguide.github.io/pennstate/'},
+{c:'dv',d:'2026-11-20',t:'18:00',n:'Volusia Speedway Park',s:'Weekly Racing',u:DV+'11-20-26-volusia-speedway-park'},
+{c:'dv',d:'2026-11-21',t:'17:45',n:'Volusia Speedway Park',s:'Weekly Racing',u:DV+'11-21-26-volusia-speedway-park'},
+{c:'flo',d:'2026-11-19',t:'20:45',n:'USAC National Midgets at Plaza Park',s:'Plaza Park Raceway · Visalia, CA',u:FL+'15295050-2026-usac-nos-energy-drink-midgets-at-plaza-park-raceway'},
+{c:'flo',d:'2026-11-20',t:'16:45',n:'USAC Chase Johnson Classic at Merced',s:'Merced Fairgrounds Speedway · Merced, CA',u:FL+'15295052-2026-usac-chase-johnson-classic-at-merced-speedway'},
+{c:'flo',d:'2026-11-21',t:'16:45',n:'USAC Chase Johnson Classic at Merced',s:'Merced Fairgrounds Speedway · Merced, CA',u:FL+'15295052-2026-usac-chase-johnson-classic-at-merced-speedway'},
+{c:'flo',d:'2026-11-25',t:'19:45',n:'USAC Jason Leffler Memorial at Kern',s:'Kevin Harvick\'s Kern Raceway · Bakersfield, CA',u:FL+'15295049-2026-usac-jason-leffler-memorial-at-kern-raceway'},
+{c:'gb',d:'2026-11-25',t:'20:00',n:'Packers at Los Angeles Rams',s:'Week 12 · SoFi Stadium · Netflix',u:'https://ackleytvguide.github.io/packers/'},
+{c:'mia',d:'2026-11-22',t:'13:00',n:'Dolphins at Buffalo Bills',s:'Week 11 · Highmark Stadium · FOX',u:'https://ackleytvguide.github.io/dolphins/'},
+{c:'tb',d:'2026-11-22',t:'13:00',n:'Buccaneers at Detroit Lions',s:'Week 11 · Ford Field · CBS',u:'https://ackleytvguide.github.io/bucs/'},
+{c:'wis',d:'2026-11-21',t:'12:00',n:'Badgers at Purdue',s:'Gm 11 · Ross-Ade Stadium · NBC',u:'https://ackleytvguide.github.io/badgers/'},
+{c:'psu',d:'2026-11-21',t:'15:30',n:'Penn State vs Rutgers',s:'Gm 11 · Beaver Stadium · FS1',u:'https://ackleytvguide.github.io/pennstate/'},
 ];
 
 // ---- config -----------------------------------------------------------
-const DAYS = ['2026-11-09','2026-11-10','2026-11-11','2026-11-12','2026-11-13','2026-11-14','2026-11-15','2026-11-16','2026-11-17','2026-11-18','2026-11-19'];
+const DAYS = ['2026-11-16','2026-11-17','2026-11-18','2026-11-19','2026-11-20','2026-11-21','2026-11-22','2026-11-23','2026-11-24','2026-11-25','2026-11-26'];
 let START = 15*60, END = 23*60;               // recomputed per day in render()
 const PXPM = 2.1, BLOCK = 175;                // px per minute, nominal block length
 const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
